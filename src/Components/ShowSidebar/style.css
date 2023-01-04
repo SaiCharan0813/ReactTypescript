@@ -1,0 +1,372 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&family=Source+Sans+Pro&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&family=Source+Sans+Pro:wght@200&display=swap");
+.row{
+  width: 100%;
+}
+  .list-elm-color {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.877);
+  }
+  .view-clr{
+    color: #3399ff;
+  }
+  .font-family3{
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .list-header {
+    color: black;
+    font-weight: bolder;
+    padding-bottom: 4px;
+  }
+  .hidden1-class{
+    visibility: hidden;
+  }
+  .hide-less{
+    visibility: hidden;
+  }
+.lt{
+  width: 22rem;
+    margin: 0%;
+    padding: 0%;
+    text-align: left;
+}
+.menu-list1{
+    list-style: none;
+    }
+    .menu-item{
+      font-size: 1rem;
+    }
+    .page-size{
+      margin: 1rem;
+    }
+    
+    .view-item{
+      color: #7DD7FD;
+      font-size: 0.875rem;
+    }
+    .me-1{
+      background-color: #00B1FC;
+      padding: 0.625rem 1rem 0.625rem 0.625rem;
+    }
+    .search{
+      font-size: 1.25rem;
+      display: flex;
+      margin: 0.812rem 0.812rem 20.125rem -1.25rem;
+    }
+    .btn-clear{
+      background-color: #69ba00;
+      color: white;
+      padding: 0.312rem 1.25rem;
+      border-radius: -0.625rem;
+      align-items: 1.25rem;
+     
+    }
+    .filter{
+      font-size: 1.187rem;
+    }
+    .add-employee{
+      margin-left: 17rem;
+    }
+    .btn-add{
+      background-color: #00B1FC;
+      color: white;
+    }
+    .note-text{
+      font-size: 0.75rem;
+    }
+    .search-text p{
+      font-size: 1.06rem;
+    }
+    .bdr{
+      border-style:  solid;
+    }
+    .container{
+      display: flex;
+    }
+    .stylish-border{
+      border-radius: 0.625rem;
+    }
+    .card-size{
+      display:flex;
+      background-color: #E9E8E8;
+    }
+    .cr{
+      display: flex;
+    }
+    .imginfo{
+      font-size: 0.937rem;
+    }
+    .profiledata{
+      padding-top: 0px;
+      margin-bottom: 0px;
+    }
+ /**/
+  .flex-container > div {
+    background-color: #ffffff;
+    width: fit-content;
+    line-height: 1rem;
+  }
+  .logo-nav2 {
+    width: 9rem;
+    top: -2.375rem;    
+  }
+ 
+  .head-nav2 {
+    font-size: 1.75rem;
+    top: 0.562rem;
+    text-align: left;
+  }
+  .text-nav2 {
+    font-size: 0.937rem;
+    text-align: left;
+  }
+  .usergreeting-nav2 {
+    font-size: 1.625rem;
+    top: 1.5rem;
+    left: 4.5rem;
+    }
+  .username-nav2 {
+    font-size: 1.625rem;
+    flex-grow: 1;
+    top: 1.5rem;
+    left: 3rem;
+    }
+    .employee1-nav2 {
+      width: 3.68rem;
+      top: 0.687rem;
+      left: 0rem;
+      }
+  .blue {
+    color: #00b1fc;
+  }
+  .head-text2 {
+    color: rgba(37, 37, 37, 0.734);
+  }
+  .list-elm-color {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.877);
+  }
+
+
+@media screen and (max-width: 51.25em) {
+  .logo-2 {
+    flex-grow: 9;
+    top: 0.625rem;
+    left: 3.5rem;
+}
+.employee1-nav {
+  width: 3.68rem;
+  top: 0.68rem;
+  left: 46rem;
+}
+.username-nav {
+  font-size: 1.625rem;
+  flex-grow: 1;
+  top: 1.5rem;
+  left: 47rem;
+}
+.usergreeting-nav {
+  font-size: 1.625rem;
+  top: 1.5rem;
+  left: 49rem;
+}
+}
+/*1024 screen*/
+@media screen and (max-width: 64em) {
+  .logo-2 {
+    flex-grow: 9;
+    top: 0.625rem;
+    left: 3.5rem;
+}
+.employee1-nav {
+  width: 3.68rem;
+  top: 0.68rem;
+  left: 34rem;
+}
+.username-nav {
+  font-size: 1.625rem;
+  flex-grow: 1;
+  top: 1.5rem;
+  left: 34rem;
+}
+.usergreeting-nav {
+  font-size: 1.625rem;
+  top: 1.5rem;
+  left: 34rem;
+}
+}
+
+  /*mobile devices*/
+@media screen and (max-width: 25.75em) {
+  .logo-2 {
+    flex-grow: 9;
+    top: 0.625rem;
+    left: 5.56rem;
+}
+.head-nav2 {
+  visibility: visible;
+  right: 3rem;
+  top: -2.375rem;
+}
+.text-nav2 {
+  visibility: hidden;
+}
+.employee1-nav2 {
+  width: 3.68rem;
+  top: -90.5rem;
+  left: -3rem;
+}
+.usergreeting-nav2 {
+  font-size: 1rem;
+  top: -91.5rem;
+  left: 4rem;
+}
+.username-nav2 {
+  font-size: 1rem;
+  top: -89.5rem;
+  left: -2rem;
+}
+.closex{
+  bottom: 1rem;
+  left: 5rem;
+}
+.list-elm-color {
+  cursor: pointer;
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.877);
+}
+.list-header {
+  color: black;
+  font-size: 2rem;
+  font-weight: bolder;
+  padding-bottom: 4px;
+}
+
+
+} 
+
+
+
+/*ipads and tablets*/
+@media screen and (max-width:33.75em) {
+  .logo-2 {
+    flex-grow: 9;
+    top: 0.625rem;
+    left: 3.5rem;
+}
+.employee1-nav {
+  width: 3.68rem;
+  top: 0.68rem;
+  left: 62rem;
+}
+.username-nav {
+  font-size: 1.625rem;
+  flex-grow: 1;
+  top: 1.5rem;
+  left:61rem;
+}
+.usergreeting-nav {
+  font-size: 1.625rem;
+  top: 1.5rem;
+  left: 61rem;
+}
+}
+/*extra large screens and tv's*/
+@media screen and (width: 80em) {
+  .logo-2 {
+    flex-grow: 9;
+    top: 0.625rem;
+    left: 3.5rem;
+}
+.employee1-nav {
+  width: 3.68rem;
+  top: 0.68rem;
+  left: 19rem;
+}
+.username-nav {
+  font-size: 1.625rem;
+  flex-grow: 1;
+  top: 1.5rem;
+  left:19rem;
+}
+.usergreeting-nav {
+  font-size: 1.625rem;
+  top: 1.5rem;
+  left: 19rem;
+}
+}
+
+
+  @media screen and (width: 120em) {
+ 
+  
+    .usergreeting-nav {
+      font-size: 1.625rem;
+      top: 1.5rem;
+      left: -13.5rem;
+  }
+    .username-nav {
+      font-size: 1.625rem;
+      flex-grow: 1;
+      top: 1.5rem;
+      left: -15rem;
+    }
+    .employee1-nav {
+      width: 3.68rem;
+      top: 0.68rem;
+      left: -20rem;
+    }
+    
+}  
+
+@media screen and (max-width: 51.25em) {
+  .row{
+    width: 100%;
+   }
+}
+
+  
+/*mobiles*/
+@media screen and (max-width: 25.75em) {
+    .row{
+      width: 100%;
+     }
+     .lt{
+      visibility: visible;
+     }
+     .logo-0{
+      display: block;
+    }
+    .show-btn{
+      display: block;
+      visibility: visible;
+    }
+    .menu-list1{
+      visibility: visible;
+      position: relative;
+      top: 7rem;
+    }
+  }
+/*ipads and tablets*/
+@media screen and (width:33.75em) {
+  .row{
+    width: 100%;
+   }
+}
+/*extra large screens and tv's*/
+@media screen and (width: 80em) {
+ .row{
+  width: 100%;
+ }
+
+}
+
+@media screen and (width: 120em) {
+  .row{
+   width: 100%;
+  }
+ 
+ }

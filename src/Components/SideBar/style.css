@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&family=Source+Sans+Pro&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&family=Source+Sans+Pro:wght@200&display=swap");
+.row{
+  width: 100%;
+}
+  .list-elm-color {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.877);
+  }
+  .view-clr{
+    color: #3399ff;
+  }
+  .font-family3{
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .list-header {
+    color: black;
+    font-weight: bolder;
+    padding-bottom: 4px;
+  }
+  .hidden1-class{
+    visibility: hidden;
+  }
+  .hide-less{
+    visibility: hidden;
+  }
+.lt{
+  width: 22rem;
+    margin: 0%;
+    padding: 0%;
+    text-align: left;
+}
+.menu-list{
+    list-style: none;
+    }
+    .menu-item{
+      font-size: 1rem;
+    }
+    .page-size{
+      margin: 1rem;
+    }
+    
+    .view-item{
+      color: #7DD7FD;
+      font-size: 0.875rem;
+    }
+    .me-1{
+      background-color: #00B1FC;
+      padding: 0.625rem 1rem 0.625rem 0.625rem;
+    }
+    .search{
+      font-size: 1.25rem;
+      display: flex;
+      margin: 0.812rem 0.812rem 20.125rem -1.25rem;
+    }
+    .btn-clear{
+      background-color: #69ba00;
+      color: white;
+      padding: 0.312rem 1.25rem;
+      border-radius: -0.625rem;
+      align-items: 1.25rem;
+     
+    }
+    .filter{
+      font-size: 1.187rem;
+    }
+    .add-employee{
+      margin-left: 17rem;
+    }
+    .btn-add{
+      background-color: #00B1FC;
+      color: white;
+    }
+    .note-text{
+      font-size: 0.75rem;
+    }
+    .search-text p{
+      font-size: 1.06rem;
+    }
+    .bdr{
+      border-style:  solid;
+    }
+    .container{
+      display: flex;
+    }
+    .stylish-border{
+      border-radius: 0.625rem;
+    }
+    .card-size{
+      display:flex;
+      background-color: #E9E8E8;
+    }
+    .cr{
+      display: flex;
+    }
+    .imginfo{
+      font-size: 0.937rem;
+    }
+    .profiledata{
+      padding-top: 0px;
+      margin-bottom: 0px;
+    }
+@media screen and (max-width: 51.25em) {
+  .row{
+    width: 100%;
+   }
+}
+
+  
+/*mobiles*/
+@media screen and (max-width: 25.75em) {
+  .row{
+    width: 100%;
+   }
+   .menu-list {
+    list-style: none;
+    visibility: hidden;
+}
+}
+
+/*ipads and tablets*/
+@media screen and (width:33.75em) {
+  .row{
+    width: 100%;
+   }
+}
+/*extra large screens and tv's*/
+@media screen and (width: 80em) {
+ .row{
+  width: 100%;
+ }
+
+}
+
+@media screen and (width: 120em) {
+  .row{
+   width: 100%;
+  }
+ 
+ }

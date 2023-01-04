@@ -1,0 +1,82 @@
+.add_emp {
+    display: block;
+    width: 30vw;
+    height: 85vh;
+    position: absolute;
+    padding: 2vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 2vh;
+    right: 2vw;
+    z-index: 2;
+    background-color: rgb(245, 245, 245);
+    text-align: left;
+  }
+  
+  .font-family3{
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .position-absolute{
+    position: absolute;
+  }
+  .emp-frm-elm {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .drop-options select option {
+    width: 100%;
+    height: 1vh;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .close {
+    top: 2vh;
+    right: 2vw;
+    cursor: pointer;
+  }
+  .alert-text {
+    color: red;
+    text-align: center;
+    
+  }
+  .add-emp-submit {
+    color: white,
+    
+  
+  }
+  .add-emp-submit{
+    color: white;
+    background-color: #3399ff;
+    margin: 2vh 0vw 0vw 12vw;
+  }
+   /*mobile devices*/
+@media screen and (max-width: 25.75em) {
+  .add_emp {
+    display: block;
+    width: 189vw;
+    height: 66vh;
+    position: absolute;
+    padding: 7vw;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 5vh;
+    right: -5rem;
+    z-index: 5;
+    background-color: rgb(245, 245, 245);
+    text-align: left;
+}
+  
+  .font-family3{
+    font-family: "Source Sans Pro", sans-serif;
+  }
+}
