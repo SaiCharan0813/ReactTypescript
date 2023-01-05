@@ -33,7 +33,7 @@
     padding: 0%;
     text-align: left;
 }
-.menu-list{
+    .menu-list{
     list-style: none;
     }
     .menu-item{
@@ -96,6 +96,9 @@
     .cr{
       display: flex;
     }
+    .view-clr {
+      color: #3399ff;
+  }
     .imginfo{
       font-size: 0.937rem;
     }

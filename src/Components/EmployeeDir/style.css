@@ -146,7 +146,8 @@
 @media screen and (max-width: 25.75em) {
   .emp-dir {
     position: relative;
-    bottom: 64rem;
+    bottom: 88rem;
+    right: 6rem;
     width: 65.5%;
     height: 9rem;
     border: 1px solid rgb(112 107 107 / 51%);
@@ -160,6 +161,10 @@
     background-color: rgb(255, 255, 255);
     align-items: center;
   }
+  .home {
+    width: 37rem;
+    margin: -33rem -6rem 2rem 10rem;
+}
   .alpha-search {
     width: 98.5%;
     position: relative;
@@ -167,38 +172,67 @@
     display: grid;
     bottom: 50rem;
 }
-.note-user {
+.add_emp {
+  display: block;
+  width: 189vw;
+  height: 87vh;
+  position: absolute;
+  padding: 7vw;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  top: -129vh;
+  right: -29rem;
+  z-index: 5;
+  background-color: rgb(245, 245, 245);
   text-align: left;
-  bottom: 62rem;
+}
+.head-text {
+  color: rgba(37, 37, 37, 0.734);
+  height: 4rem;
+  position: relative;
+  top: -43rem;
+  left: 3rem;
+  font-size: 4rem;
+}
+.note-user {
+  visibility: hidden;
 }
 .input-frm {
   border: 0.5 solid rgba(0, 0, 0, 0.733);
-  height: 5.125rem;
-  width: 378%;
-  right: 1rem;
-  bottom: 48rem;
+  height: 9.125rem;
+  width: 51rem;
+  right: -5rem;
+  bottom: 72rem;
 }
-.btn1 {
-  background-color: #69BA00;
-  width: 94%;
-  left: 2.625rem;
-  bottom: 43rem;
-}
+
 .filter-by{
   visibility: hidden;
 }
 .input-frm2 {
   border: 0.5 solid rgba(0, 0, 0, 0.733);
-  height: 2rem;
-  width: 75%;
-  bottom: 43rem;
-  left: 3rem;
+  height: 6rem;
+  font-size: 2rem;
+  width: 7.9rem;
+  bottom: 73rem;
+  left: 1rem;
+  background-color: grey;
 }
 .btn2 {
-  width: 110%;
-  left: 7.6rem;
-  bottom: 43rem;  
+  width: 301%;
+  height: 6rem;
+  font-size: 1rem;
+  left: -15.4rem;
+  bottom: 63rem;
   background-color: #00b1fc;
+}
+.btn1 {
+  background-color: #69BA00;
+  width: 209%;
+  height: 4rem;
+  font-size: 1rem;
+  left: -22.375rem;
+  bottom: 63rem;
 }
 .flex-container3 {
   display: flex;
@@ -230,6 +264,29 @@
 }
 .flex-container > div {
   visibility: hidden;
+}
+.alpha {
+  background-color: #00b1fc;
+  width: 4.9rem;
+  height: 3rem;
+  margin: 5px -0.125rem 0.125rem 0.187rem;
+  text-align: center;
+  position: relative;
+  top: 7rem;
+  left: 7rem;
+  font-size: 0.81rem;
+  border: 0.2px solid rgba(255, 255, 255, 0.884);
+  cursor: pointer;
+  padding: 0px 0px 0.375rem 0.437rem;
+}
+.alphabets {
+  width: 75%;
+  margin: 0.375rem 0px 0px 0.125rem;
+  padding: -0.125rem 0.0625rem 0.0625rem 0.25rem;
+  height: 1.31rem;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
 }
 }
 

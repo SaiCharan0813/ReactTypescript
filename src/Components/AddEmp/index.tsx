@@ -7,12 +7,12 @@ import Employee_dir from "../EmployeeDir";
 interface props{
   closeEmp : any
 }
-import Iemployee from "../Interface/Interface";
+import IEmployee from '../IEmployee/IEmployee';
 var image_url:any
 var file:string
 function AddEmp( {closeEmp}:props) {
   // All the variable initialisation and usestate hooks declaration
-  var employees: Iemployee[] = JSON.parse(
+  var employees: IEmployee[] = JSON.parse(
     localStorage.getItem("employees") || "[]"
   );
 
@@ -90,7 +90,7 @@ function AddEmp( {closeEmp}:props) {
     let validate_res: boolean = validateEmp();
     if (validate_res){
       emp_img=image_url;
-      var employee1: Iemployee = {
+      var employee1: IEmployee = {
         _id: uuid().slice(0, 8),
         Employee_Img:emp_img,
         First_Name: f_name,
@@ -125,27 +125,27 @@ function AddEmp( {closeEmp}:props) {
   return (
     <div id="add-emp-list" className="add_emp">
       <button onClick={() => closeEmp(false)}>x</button>
-      <h1 className="head-text">ADD EMPLOYEE</h1>
+      <h1 className="head-text2">ADD EMPLOYEE</h1>
       <form action="POST">
        
         <label htmlFor="select_img"><b>Select Image</b></label>
                 <input type="file" className="form-control"  id="image-input" name="imageurl" onChange={()=>previewFile(event)} accept="image/jpeg, image/png, image/jpg"  />
        
-        <label htmlFor="First_name" className="head-text">First Name</label>
+        <label htmlFor="First_name" className="head-text3">First Name</label>
         <input type="text" name="First_name" className="emp-frm-elm" value={f_name}
           onChange={(event) => {
             setf_name(event.target.value);
           }}/>
 
-        <label htmlFor="Last_name" className="head-text" >Last Name</label>
+        <label htmlFor="Last_name" className="head-text3" >Last Name</label>
         <input type="text" name="Last_name" className="emp-frm-elm" value={l_name}
           onChange={(event) => setl_name(event.target.value)}/>
 
-        <label htmlFor="Prefrd_name" className="head-text">Preferred Name</label>
+        <label htmlFor="Prefrd_name" className="head-text3">Preferred Name</label>
         <input type="text" name="Prfrd_name" className="emp-frm-elm" value={f_name+l_name}
           onMouseOver={()=>setprfrd_name(f_name+l_name)} />
 
-        <label htmlFor="Job_title" className="head-text">Job Title</label>
+        <label htmlFor="Job_title" className="head-text3">Job Title</label>
         <select name="Job_title" id="jb-title" className="emp-frm-elm" value={jobtitle}
           onChange={(event)=>setjobtitle(event.target.value)} >
           <option className="drop-options" value="Select">Select</option>
@@ -175,7 +175,7 @@ function AddEmp( {closeEmp}:props) {
           </option>
         </select>
 
-        <label htmlFor="Office" className="head-text">Office</label>
+        <label htmlFor="Office" className="head-text3">Office</label>
         <select name="Office" id="office" className="emp-frm-elm" value={office}
           onChange={(event)=>setoffice(event.target.value)} >
           <option className="drop-options" value="Select">Select</option>
@@ -183,7 +183,7 @@ function AddEmp( {closeEmp}:props) {
           <option value="India">India</option>
         </select>
 
-        <label htmlFor="Dept" className="head-text">Department</label>
+        <label htmlFor="Dept" className="head-text3">Department</label>
         <select name="Dept" id="dept" className="emp-frm-elm" value={dept}
           onChange={(event)=>setdept(event.target.value)}>
           <option className="drop-options" value="Select">Select</option>
@@ -193,13 +193,13 @@ function AddEmp( {closeEmp}:props) {
           <option value="Sales">Sales</option>
         </select>
 
-        <label htmlFor="Skype" className="head-text">Skype ID</label>
+        <label htmlFor="Skype" className="head-text3">Skype ID</label>
         <input type="text" name="Skype" className="emp-frm-elm" value={skypeid}
           onChange={(event)=>setskypeid(event.target.value)} />
-        <label htmlFor="Email" className="head-text">Email</label>
+        <label htmlFor="Email" className="head-text3">Email</label>
         <input type="email" name="Email" className="emp-frm-elm" value={email}
           onChange={(event)=>setemial(event.target.value)} />
-        <label htmlFor="Phn_no" className="head-text">Phone No</label>
+        <label htmlFor="Phn_no" className="head-text3">Phone No</label>
         <input
           type="tel"
           name="Phn_no"
@@ -209,7 +209,7 @@ function AddEmp( {closeEmp}:props) {
           value={Phnno}
           onChange={(event)=>setphno(event.target.value)}
         />
-        <p id="alert-msg" className="alert-text font-family3">{alert}</p>
+        <p id="alert-msg" className="alert-text3 font-family3">{alert}</p>
         <input
           type="button"
           className="button font-family3 add-emp-submit"

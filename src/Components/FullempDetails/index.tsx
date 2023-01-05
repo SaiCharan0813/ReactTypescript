@@ -2,18 +2,22 @@ import React,{useState} from "react";
 import { Link,useParams } from "react-router-dom";
 import pic from '../assets/employee-img2.jpg'
 import '../FullempDetails/style.css'
-import Iemployee from "../Interface/Interface";
+import IEmployee from "../IEmployee/IEmployee";
 import EmployeeDir from "../EmployeeDir";
 import {ReactComponent as Xoctagon} from'../assets/x-octagon.svg'
-
+var current: number
 var image_url:any
+var employees: IEmployee[] = JSON.parse(
+  localStorage.getItem("employees") || "[]"
+);
 const FullEmployee:React.FC =() => {
     //To retrieve the id from the url
     let {_id} = useParams();
     //To retrieve the employee details from local storage
-    let ee:Iemployee[]=JSON.parse(localStorage.getItem("employees") || "[]");
-    //To find the employee details from thr id sent in the url
-    let current_emp:Iemployee=ee.find((emp)=>emp._id==_id)!
+    let ee:IEmployee[]=JSON.parse(localStorage.getItem("employees") || "[]");
+    //To find the employee details from the id sent in the url
+    let current_emp:IEmployee=ee.find((emp)=>emp._id==_id)!
+    current=ee.findIndex((emp)=>emp==current_emp)!
     //Declaring the all useState hooks needed below
     const [edit, setedit] = useState<boolean>(false)
     var [emp_img, setemp_img] = useState<string>("");
@@ -76,7 +80,10 @@ const FullEmployee:React.FC =() => {
         return true;
     }
     function deletes(){
-      localStorage.removeItem("employees")
+      console.log(current)
+      ee.splice(current,1)
+      console.log(ee)
+      localStorage.setItem("employees", JSON.stringify(ee));
     }
     // function deleting(rId: any){
     //   let temp = employes.filter((item: { id: any; }) => item.id != rId);
@@ -146,7 +153,7 @@ const FullEmployee:React.FC =() => {
      
       <div className="details-div">
         
-      <label htmlFor="select_img"><b>Select Image</b></label>
+      <label htmlFor="select_img" className="sel"><b>Select Image</b></label>
                 <input type="file"  id="image-input" name="imageurl" onChange={()=>previewFile(event)} accept="image/jpeg, image/png, image/jpg"  />
        
         <p className="head-text desc"><b>First Name : </b></p>

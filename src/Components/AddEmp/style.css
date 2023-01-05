@@ -13,9 +13,13 @@
     background-color: rgb(245, 245, 245);
     text-align: left;
   }
-  
+ 
   .font-family3{
     font-family: "Source Sans Pro", sans-serif;
+  }
+  .head-text2 {
+    color: rgba(37, 37, 37, 0.734);
+    height: 3rem;
   }
   .position-absolute{
     position: absolute;

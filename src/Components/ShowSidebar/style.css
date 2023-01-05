@@ -208,29 +208,30 @@
 }
 .head-nav2 {
   visibility: visible;
-  right: 3rem;
-  top: -2.375rem;
+  right: 14rem;
+  top: -3.375rem;
 }
 .text-nav2 {
   visibility: hidden;
 }
 .employee1-nav2 {
-  width: 3.68rem;
-  top: -90.5rem;
-  left: -3rem;
+  width: 11.68rem;
+  top: -81.5rem;
+  left: -29rem;
 }
 .usergreeting-nav2 {
-  font-size: 1rem;
-  top: -91.5rem;
-  left: 4rem;
+  font-size: 3rem;
+  top: -79.5rem;
+  left: 0rem;
 }
 .username-nav2 {
-  font-size: 1rem;
-  top: -89.5rem;
-  left: -2rem;
+  font-size: 3rem;
+  top: -75.5rem;
+  left: -14rem;
 }
-.closex{
-  bottom: 1rem;
+.closex {
+  bottom: 13rem;
+  font-size: 3rem;
   left: 5rem;
 }
 .list-elm-color {
@@ -244,8 +245,18 @@
   font-weight: bolder;
   padding-bottom: 4px;
 }
-
-
+.menu-list1{
+  background-color: rgba(219, 218, 218, 0.753);
+}
+.lt {
+  width: 65rem;
+  position: relative;
+  margin: 0%;
+  top: 12rem;
+  padding: 0%;
+  text-align: left;
+  z-index: 9;
+}
 } 
 
 

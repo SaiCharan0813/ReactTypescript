@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 import '../EmployeeCard/style.css'
 import {Container ,Card, Col, Button, Row} from 'react-bootstrap';  
-import employee from '../Interface/Interface';
+import IEmployee from '../IEmployee/IEmployee';
 import {ReactComponent as Telephone} from'../assets/telephone-fill.svg'
 import {ReactComponent as Envolop} from'../assets/envelope-fill.svg'
 import {ReactComponent as Chat} from'../assets/chat-fill.svg'

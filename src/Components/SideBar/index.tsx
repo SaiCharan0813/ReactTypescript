@@ -3,14 +3,14 @@
  import { Col } from "react-bootstrap";
  import '../SideBar/style.css'
  import { Link,useSearchParams } from "react-router-dom";
- import Iemployee from "../Interface/Interface";
+ import IEmployee from "../IEmployee/IEmployee";
  interface props{
    show_sidebar:boolean
  }
 
  const SideBar:React.FC<props> = (show_sidebar) => {
    //retrieving data from local storage
-   const employee:Iemployee[] = JSON.parse(localStorage.getItem("employees") || "[]")
+   const employee:IEmployee[] = JSON.parse(localStorage.getItem("employees") || "[]")
 
    var departments:string[] = ["IT", "Human resources","MD","Sales",];
    var offices:string[] = ["Seattle", "India"];
@@ -32,15 +32,15 @@
    //loops to count the count of employees of each catogery(3 catogeries of side bar) and push them to the array
 
    departments.forEach((element) => {
-     var cnt:Iemployee[]  = employee.filter((emp) => emp.Dept_Name == element);
+     var cnt:IEmployee[]  = employee.filter((emp) => emp.Dept_Name == element);
      departments_count.push(cnt.length);
    });
    offices.forEach((element) => {
-     var cnt:Iemployee[]  = employee.filter((emp) => emp.Office_Details == element);
+     var cnt:IEmployee[]  = employee.filter((emp) => emp.Office_Details == element);
      offices_count.push(cnt.length);
    });
    job_titles.forEach((element) => {
-     var cnt:Iemployee[]  = employee.filter((emp) => emp.Title == element);
+     var cnt:IEmployee[]  = employee.filter((emp) => emp.Title == element);
      jbtitle_count.push(cnt.length);
    });
      return (

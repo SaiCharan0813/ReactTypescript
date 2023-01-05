@@ -1,4 +1,4 @@
-export default interface Iemployee{
+export default interface IEmployee{
     [x: string]: any;
     _id:string;
     Employee_Img:any

@@ -6,13 +6,13 @@ import FullEmployee from "../FullempDetails";
 import '../EmployeeDir/style.css'
 import {ReactComponent as Person} from'../assets/person-fill.svg'
 
-import Iemployee from "../Interface/Interface";
+import IEmployee from "../IEmployee/IEmployee";
 const EmployeeDir:React.FC = () => {
   // All the variable initialisation and usestate hooks declaration
   const [openEmp,setopenEmp] = useState(false);
-  const employees:Iemployee[] = JSON.parse(
+  const employees:IEmployee[] = JSON.parse(
     localStorage.getItem("employees") || "[]");
-    const [filteremp, setfilteremp] = useState<Iemployee[]>(employees || []);
+    const [filteremp, setfilteremp] = useState<IEmployee[]>(employees || []);
     const [search, setsearch] = useState<string>("");
     const [searchCategory, setsearchCategory] = useState<string>("First_Name");
     const [category, setcategory] = useState<string>("");
@@ -22,7 +22,7 @@ const EmployeeDir:React.FC = () => {
     function usable(){
       if (category=="starts_with"){
         setfilteremp(
-          employees.filter((emp : Iemployee) => {
+          employees.filter((emp : IEmployee) => {
             {
               if (emp.First_Name.toLowerCase().startsWith(value.toLowerCase())) {
                 return emp;
@@ -33,7 +33,7 @@ const EmployeeDir:React.FC = () => {
       }
       if (category=="Department"){
         setfilteremp(
-          employees.filter((emp:Iemployee) => {
+          employees.filter((emp:IEmployee) => {
             {
               if (emp.Dept_Name.toLowerCase() == value.toLowerCase()){
                 return emp;
@@ -44,7 +44,7 @@ const EmployeeDir:React.FC = () => {
       }
       if (category=="Office"){
         setfilteremp(
-          employees.filter((emp:Iemployee) => {
+          employees.filter((emp:IEmployee) => {
             {
               if (emp.Office_Details.toLowerCase() == value.toLowerCase()){
                 return emp
@@ -55,7 +55,7 @@ const EmployeeDir:React.FC = () => {
       }
       if(category=="Job_Title"){
         setfilteremp(
-          employees.filter((emp:Iemployee)=>{
+          employees.filter((emp:IEmployee)=>{
             {
               if(emp.Title.toLowerCase() == value.toLowerCase()){
                 return emp;
@@ -68,7 +68,7 @@ const EmployeeDir:React.FC = () => {
     function filterBy(){
       if (searchCategory == "First_Name") {
         setfilteremp(
-          employees.filter((emp: Iemployee) => {
+          employees.filter((emp: IEmployee) => {
             {
               if (emp.First_Name.toLowerCase().startsWith(search.toLowerCase())) {
                 return emp;
@@ -79,7 +79,7 @@ const EmployeeDir:React.FC = () => {
       }
       if (searchCategory == "Last_Name") {
         setfilteremp(
-          employees.filter((emp: Iemployee) => {
+          employees.filter((emp: IEmployee) => {
             {
               if (emp.Last_Name.toLowerCase().startsWith(search.toLowerCase())) {
                 return emp;
@@ -90,7 +90,7 @@ const EmployeeDir:React.FC = () => {
       }
       if (searchCategory == "Prefered_Name") {
         setfilteremp(
-          employees.filter((emp: Iemployee) => {
+          employees.filter((emp: IEmployee) => {
             {
               if (
                 emp.Preffered_Name.toLowerCase().startsWith(search.toLowerCase())
