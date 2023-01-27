@@ -1,70 +1,68 @@
-import {useState} from "react";
-import {v4 as uuid} from "uuid";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import '../AddEmp/style.css'
-import pic from '../assets/employee-img2.jpg'
-import Employee_dir from "../EmployeeDir";
-interface props{
-  closeEmp : any
+import IEmployee from '../IEmployee/IEmployee';
+interface props {
+  closeEmp: any
 }
-import Iemployee from "../Interface/Interface";
-var image_url:any
-var file:string
-function AddEmp( {closeEmp}:props) {
+
+var image_url: any
+var file: string
+function AddEmp({ closeEmp }: props) {
   // All the variable initialisation and usestate hooks declaration
-  var employees: Iemployee[] = JSON.parse(
+  var employees: IEmployee[] = JSON.parse(
     localStorage.getItem("employees") || "[]"
   );
 
-  var [emp_img, setemp_img] = useState<string>("");
-  const [f_name, setf_name] = useState<string>("");
-  const [l_name, setl_name] = useState<string>("");
-  const [prfrd_name, setprfrd_name] = useState<string>(f_name+l_name);
-  const [jobtitle, setjobtitle] = useState<string>("Select");
-  const [office, setoffice] = useState<string>("Select");
-  const [dept, setdept] = useState<string>("Select");
-  const [skypeid, setskypeid] = useState<string>("");
-  const [email, setemial] = useState<string>("");
-  const [Phnno, setphno] = useState<string>("");
+  var [employeeImage, setemployeeImage] = useState<string>("");
+  const [employeeFirstname, setemployeeFirstname] = useState<string>("");
+  const [employeeLastname, setemployeeLastname] = useState<string>("");
+  const [employeePrefferedname, setemployeePrefferedname] = useState<string>(employeeFirstname + employeeLastname);
+  const [employeeJobtitle, setemployeeJobtitle] = useState<string>("Select");
+  const [employeeOffice, setemployeeOffice] = useState<string>("Select");
+  const [employeeDepartment, setemployeeDepartment] = useState<string>("Select");
+  const [employeeSkypeid, setemployeeSkypeid] = useState<string>("");
+  const [employeeEmail, setemployeeEmail] = useState<string>("");
+  const [employeePhonenumber, setemployeePhonenumber] = useState<string>("");
   const [alert, setalert] = useState<string>("");
 
   //Function to validate employee details from add employee form
   function validateEmp(): boolean {
-    if (f_name.length == 0) {
+    if (employeeFirstname.length == 0) {
       setalert("please enter your first name");
       return false;
     }
-    if (l_name.length == 0) {
+    if (employeeLastname.length == 0) {
       setalert("please enter your last name");
       return false;
     }
-    
-    if (dept == "Select") {
+
+    if (employeeDepartment == "Select") {
       setalert("please select the department");
       return false;
     }
-    if (jobtitle == "Select") {
+    if (employeeJobtitle == "Select") {
       setalert("please select the job title");
       return false;
     }
-    if (office == "Select") {
-      setalert("please select the office");
+    if (employeeOffice == "Select") {
+      setalert("please select the employeeOffice");
       return false;
     }
-    if (skypeid.length == 0) {
-      setalert("please enter skypeid");
+    if (employeeSkypeid.length == 0) {
+      setalert("please enter employeeSkypeid");
       return false;
     }
-    if (Phnno.length != 12) {
+    if (employeePhonenumber.length != 12) {
       setalert("please enter the valid phone number");
       return false;
     }
 
 
-    var x = email;
-    var email_regex: RegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (email_regex.test(x) == false) {
-      setalert("Please enter a valid Email ID !");
+    var x = employeeEmail;
+    var employeeEmail_regex: RegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (employeeEmail_regex.test(x) == false) {
+      setalert("Please enter a valid employeeEmail ID !");
 
       return false;
     }
@@ -72,148 +70,154 @@ function AddEmp( {closeEmp}:props) {
     return true;
   }
 
-  function previewFile(event : any){
-    var file=event.target.files[0];
+  function previewFile(event: any) {
+    var file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onloadend= (e) => {
+    reader.onloadend = (e) => {
       image_url = reader.result;
- 
+
     }
-    if(file){
+    if (file) {
       reader.readAsDataURL(file);
     }
-   }
+  }
 
   //Function to add a employee to the directory (local storage) if validated to be satisfying all the required criteria
   function addEmp(): void {
     let validate_res: boolean = validateEmp();
-    if (validate_res){
-      emp_img=image_url;
-      var employee1: Iemployee = {
+    if (validate_res) {
+      employeeImage = image_url;
+      var employee1: IEmployee = {
         _id: uuid().slice(0, 8),
-        Employee_Img:emp_img,
-        First_Name: f_name,
-        Last_Name: l_name,
-        Preffered_Name: prfrd_name,
-        Title: jobtitle,
-        Office_Details: office,
-        Dept_Name: dept,
-        Skype_Id: skypeid,
-        Email_id: email,
-        phone_no: Phnno,
-        
+        Employee_Img: employeeImage,
+        First_Name: employeeFirstname,
+        Last_Name: employeeLastname,
+        Preffered_Name: employeePrefferedname,
+        Title: employeeJobtitle,
+        Office_Details: employeeOffice,
+        Dept_Name: employeeDepartment,
+        Skype_Id: employeeSkypeid,
+        Email_id: employeeEmail,
+        phone_no: employeePhonenumber,
+
       };
       employees.push(employee1);
       localStorage.setItem("employees", JSON.stringify(employees));
-      window.alert(`New user ${f_name} was added`);
-      
+      // setTimeout(() => {
+      //   window.alert(`New user ${employeeFirstname} was added`);
+      // }, 2000);
+
+      closeEmp(false)
+
+
+
       //To set all the employee form fields to empty
-      setf_name("");
-      setl_name("");
-      setprfrd_name(f_name+l_name);
-      setjobtitle("Select");
-      setoffice("Select");
-      setdept("Select");
-      setemial("");
-      setphno("");
+      setemployeeFirstname("");
+      setemployeeLastname("");
+      setemployeePrefferedname(employeeFirstname + employeeLastname);
+      setemployeeJobtitle("Select");
+      setemployeeOffice("Select");
+      setemployeeDepartment("Select");
+      setemployeeEmail("");
+      setemployeePhonenumber("");
 
       //To dispatch an event to let know for employee directory that the local storage has been updated
       window.dispatchEvent(new Event("storage"));
     }
   }
   return (
-    <div id="add-emp-list" className="add_emp">
-      <button onClick={() => closeEmp(false)}>x</button>
-      <h1 className="head-text">ADD EMPLOYEE</h1>
+    <div id="add-emp-list" className="adding-employee position-absolute">
+      <button className="close-form position-relative" onClick={() => closeEmp(false)}>Close Form</button>
+      <h1 className="form-title position-relative">ADD EMPLOYEE</h1>
       <form action="POST">
-       
-        <label htmlFor="select_img"><b>Select Image</b></label>
-                <input type="file" className="form-control"  id="image-input" name="imageurl" onChange={()=>previewFile(event)} accept="image/jpeg, image/png, image/jpg"  />
-       
-        <label htmlFor="First_name" className="head-text">First Name</label>
-        <input type="text" name="First_name" className="emp-frm-elm" value={f_name}
+
+        <label htmlFor="select_img" className="form-field position-relative"><b>Select Image</b></label>
+        <input type="file" className="form-control form-field-value" id="image-input" name="imageurl" onChange={(event) => previewFile(event)} accept="image/jpeg, image/png, image/jpg" />
+
+        <label htmlFor="First_name" className="form-field position-relative"><b>First Name</b></label>
+        <input type="text" name="First_name" className="form-field-value" value={employeeFirstname}
           onChange={(event) => {
-            setf_name(event.target.value);
-          }}/>
+            setemployeeFirstname(event.target.value);
+          }} />
 
-        <label htmlFor="Last_name" className="head-text" >Last Name</label>
-        <input type="text" name="Last_name" className="emp-frm-elm" value={l_name}
-          onChange={(event) => setl_name(event.target.value)}/>
+        <label htmlFor="Last_name" className="form-field position-relative" ><b>Last Name</b></label>
+        <input type="text" name="Last_name" className="form-field-value" value={employeeLastname}
+          onChange={(event) => setemployeeLastname(event.target.value)} />
 
-        <label htmlFor="Prefrd_name" className="head-text">Preferred Name</label>
-        <input type="text" name="Prfrd_name" className="emp-frm-elm" value={f_name+l_name}
-          onMouseOver={()=>setprfrd_name(f_name+l_name)} />
+        <label htmlFor="Prefrd_name" className="form-field position-relative"><b>Preferred Name</b></label>
+        <input type="text" name="employeePrefferedname" className="form-field-value" value={employeeFirstname + employeeLastname}
+          onMouseOver={() => setemployeePrefferedname(employeeFirstname + employeeLastname)} />
 
-        <label htmlFor="Job_title" className="head-text">Job Title</label>
-        <select name="Job_title" id="jb-title" className="emp-frm-elm" value={jobtitle}
-          onChange={(event)=>setjobtitle(event.target.value)} >
-          <option className="drop-options" value="Select">Select</option>
-          <option className="drop-options" value="SharePoint Practice Head">
+        <label htmlFor="Job_title" className="form-field position-relative"><b>Job Title</b></label>
+        <select name="Job_title" id="jb-title" className="form-field-value" value={employeeJobtitle}
+          onChange={(event) => setemployeeJobtitle(event.target.value)} >
+          <option className="dropdown-options" value="Select">Select</option>
+          <option className="dropdown-options" value="SharePoint Practice Head">
             SharePoint Practice Head
           </option>
-          <option className="drop-options" value="Recruiting Expert">
+          <option className="dropdown-options" value="Recruiting Expert">
             Recruiting Expert
           </option>
-          <option className="drop-options" value=".Net Development Lead">
+          <option className="dropdown-options" value=".Net Development Lead">
             .Net Development Lead
           </option>
-          <option className="drop-options" value="Business Analyst">
+          <option className="dropdown-options" value="Business Analyst">
             Business Analyst
           </option>
-          <option className="drop-options" value="BI Developer">
+          <option className="dropdown-options" value="BI Developer">
             BI Developer
           </option>
-          <option className="drop-options" value="Project Lead">
+          <option className="dropdown-options" value="Project Lead">
             Project Lead
           </option>
-          <option className="drop-options" value="Summer Analyst">
+          <option className="dropdown-options" value="Summer Analyst">
             Summer Analyst
           </option>
-          <option className="drop-options" value="Manager">
+          <option className="dropdown-options" value="Manager">
             Manager
           </option>
         </select>
 
-        <label htmlFor="Office" className="head-text">Office</label>
-        <select name="Office" id="office" className="emp-frm-elm" value={office}
-          onChange={(event)=>setoffice(event.target.value)} >
-          <option className="drop-options" value="Select">Select</option>
+        <label htmlFor="employeeOffice" className="form-field position-relative"><b>employeeOffice</b></label>
+        <select name="employeeOffice" id="employeeOffice" className="form-field-value" value={employeeOffice}
+          onChange={(event) => setemployeeOffice(event.target.value)} >
+          <option className="dropdown-options" value="Select">Select</option>
           <option value="Seattle">Seattle</option>
           <option value="India">India</option>
         </select>
 
-        <label htmlFor="Dept" className="head-text">Department</label>
-        <select name="Dept" id="dept" className="emp-frm-elm" value={dept}
-          onChange={(event)=>setdept(event.target.value)}>
-          <option className="drop-options" value="Select">Select</option>
+        <label htmlFor="employeeDepartment" className="form-field position-relative"><b>Department</b></label>
+        <select name="employeeDepartment" id="employeeDepartment" className="form-field-value" value={employeeDepartment}
+          onChange={(event) => setemployeeDepartment(event.target.value)}>
+          <option className="dropdown-options" value="Select">Select</option>
           <option value="IT">IT</option>
           <option value="Human resources">Human Resources</option>
           <option value="MD">MD</option>
           <option value="Sales">Sales</option>
         </select>
 
-        <label htmlFor="Skype" className="head-text">Skype ID</label>
-        <input type="text" name="Skype" className="emp-frm-elm" value={skypeid}
-          onChange={(event)=>setskypeid(event.target.value)} />
-        <label htmlFor="Email" className="head-text">Email</label>
-        <input type="email" name="Email" className="emp-frm-elm" value={email}
-          onChange={(event)=>setemial(event.target.value)} />
-        <label htmlFor="Phn_no" className="head-text">Phone No</label>
+        <label htmlFor="Skype" className="form-field position-relative"><b>Skype ID</b></label>
+        <input type="text" name="Skype" className="form-field-value" value={employeeSkypeid}
+          onChange={(event) => setemployeeSkypeid(event.target.value)} />
+        <label htmlFor="employeeEmail" className="form-field"><b>employeeEmail</b></label>
+        <input type="email" name="employeeEmail" className="form-field-value" value={employeeEmail}
+          onChange={(event) => setemployeeEmail(event.target.value)} />
+        <label htmlFor="Phn_no" className="form-field"><b>Phone No</b></label>
         <input
           type="tel"
           name="Phn_no"
-          className="emp-frm-elm"
+          className="form-field-value"
           pattern="[0-9]{2}[0-9]{10}"
           placeholder="91xxxxxxxxxx"
-          value={Phnno}
-          onChange={(event)=>setphno(event.target.value)}
+          value={employeePhonenumber}
+          onChange={(event) => setemployeePhonenumber(event.target.value)}
         />
-        <p id="alert-msg" className="alert-text font-family3">{alert}</p>
+        <p id="alert-msg" className="alert-message font-styles">{alert}</p>
         <input
           type="button"
-          className="button font-family3 add-emp-submit"
-          onClick={()=>{
+          className="button font-styles employee-submit-button"
+          onClick={() => {
             addEmp()
           }}
           value="Add Employee"

@@ -1,106 +1,170 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&family=Source+Sans+Pro&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&family=Source+Sans+Pro:wght@200&display=swap");
-
 
 .employee-fulldetails {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 40rem;
-    background-color: rgb(228, 228, 228);
-    border-radius: -0.5rem;
-    height: 45rem;
-    bottom: 26rem;
-    left: 34rem;
-  
-  }
-  .font-family2{
-    font-family: "Exo", sans-serif;
-    font-family: "Montserrat", sans-serif;
-  }
-  .font-family3{
-    font-family: "Source Sans Pro", sans-serif;
-  }
-  .content {
-    position: relative;
-    bottom: 42px;
-    left: 12rem;
-    text-align: left;
-  }
-  .hide-sidebar{
-    display: none;
-  }
-  .alert-text {
-    color: red;
-    text-align: center;
-    font-size: 0.8rem;
-  }
-  .content-editable {
-    display: block;
-    position: relative;
-    top: -2rem;
-    left: 12rem;
-    text-align: left;
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-  .content-editable-hidden {
-    display: none;
-  }
-  .head-text {
-    color: rgba(37, 37, 37, 0.734);
-    height: 1rem;
-    
-  }
-  .drop-options select option {
-    width: 100%;
-    height: 0.5rem;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  .button {
-    border: none;
-    padding: 10px;
-    color: white;
-  
-  }
-  .desc {
-    text-align: left;
-  }
-  .details-div {
-    height: 3rem;
-    padding-left: 5rem;
-    align-items: center;
-  }
-  .edit-btn {
-    margin-right: 1.5rem 0px 0px 2rem;
-  }
-  .emp-image-fulldetails {
-    width: 7rem;
-    margin: 10px 0px 20px 16rem;
-  }
-  .close {
-    top: 20px;
-    right: 2rem;
-    cursor: pointer;
-  }
-  @media screen and (max-width:25.75em) {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 31.1rem;
+  padding-bottom: 4rem;
+  border-radius: -0.5rem;
+  height: 42rem;
+  bottom: -1rem;
+  right: 1rem;
+  z-index: 5;
 
-    .employee-fulldetails {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      width: 40rem;
-      background-color: rgb(228, 228, 228);
-      border-radius: -0.5rem;
-      height: 45rem;
-      bottom: 111rem;
-      left: 34rem;
-  }
-  }
+}
+
+.position-relative {
+  position: relative;
+}
+
+.edit-employee-backgroundcolor {
+  background-color: white;
+}
+
+.form-fields-color {
+  color: #17202A;
+}
+
+.display-hidden {
+  display: none;
+}
+
+.content {
+  bottom: 2rem;
+  right: 4rem;
+  width: 100%;
+  padding: 1px 30px;
+  margin: 0px 0;
+  display: inline-block;
+}
+
+.hide-sidebar {
+  display: none;
+}
+
+.alert-text {
+  color: red;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.content-editable {
+  display: block;
+  position: relative;
+  top: -2.8rem;
+  left: 12rem;
+  text-align: left;
+  width: fit-content;
+}
+
+.image-edit {
+  background-color: #EB984E;
+}
+
+.content-editable-hidden {
+  display: none;
+}
+
+.form-fields {
+  height: 1.7rem;
+  text-align: left;
+}
+
+.form-fields-employee {
+  height: 1.7rem;
+  text-align: left;
+}
+
+.form-field-values {
+  width: 21%;
+  padding: 0px 3px;
+  margin: -29px 11rem -3px 12rem;
+  border: 1px solid white;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.drop-options select option {
+  width: 100%;
+  height: 0.5rem;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.button {
+  border: none;
+  padding: 10px;
+  right: 0rem;
+  color: white;
+
+}
+
+.details-editing {
+  height: 3.5rem;
+  padding-left: 5rem;
+  top: 0rem;
+}
+
+
+.edit-btn {
+  margin-right: 1.5rem 0px 0px 2rem;
+}
+
+.emp-image-fulldetails {
+  width: 12rem;
+  top: 0.5rem;
+  right: 23rem;
+  height: 12rem;
+  margin: 0px 0px -1px 24rem;
+}
+
+.editing-part {
+  background-color: white;
+  position: relative;
+  right: 0rem;
+  left: 0rem;
+  top: 0rem;
+}
+
+.close {
+  cursor: pointer;
+  color: black;
+  left: 28rem;
+  width: 2rem;
+  height: 7rem;
+
+}
+
+.content-tohide {
+  display: none;
+}
+
+.delete-employee {
+  color: white;
+  right: 4em;
+  height: 2rem;
+  top: 2rem;
+  border: none;
+}
+
+.edit-display {
+  font-size: 2rem;
+}
+
+.edit-button {
+  left: 19rem;
+  top: 2rem;
+}
+
+.employee-name-edit {
+  font-size: 1.5rem;
+}
+
+.editing-part-color {
+  color: #00b1fc;
+}

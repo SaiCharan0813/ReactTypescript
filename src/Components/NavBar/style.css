@@ -5,246 +5,258 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;400&family=Montserrat:wght@300&family=Source+Sans+Pro:wght@200&display=swap");
 
 .flex-container {
-    display: flex;
-    flex-wrap: nowrap;
-    background-color: rgb(255, 255, 255);
-  }
-  .show-btn{
-    visibility: hidden;
-    display: none;
-  }
-  .font-family2{
-    font-family: "Exo", sans-serif;
-    font-family: "Montserrat", sans-serif;
-  }
-  .font-family3{
-    font-family: "Source Sans Pro", sans-serif;
-  }
-  .hidden-class{
-    visibility: hidden;
-  }
-  .flex-container > div {
-    background-color: #ffffff;
-    width: fit-content;
-    line-height: 1rem;
-  }
-  .logo-nav {
-    width: 9rem;
-    top: 0.625rem;
-    
-  }
- 
-  .head-nav {
-    font-size: 1.75rem;
-    top: 0.562rem;
-    text-align: left;
-  }
-  .text-nav {
-    font-size: 0.937rem;
-    text-align: left;
-  }
-  .usergreeting-nav {
-    font-size: 1.625rem;
-    top: 1.5rem;
-    left: 4.5rem;
-    }
-  .username-nav {
-    font-size: 1.625rem;
-    flex-grow: 1;
-    top: 1.5rem;
-    left: 3rem;
-    }
-    .employee1-nav {
-      width: 3.68rem;
-      top: 0.687rem;
-      left: 0rem;
-      }
-  .logo-0 {
-    display: none;
-    flex-grow: 1;
-  }
-  .logo-1 {
-    flex-grow: 1;
-  }
-  .logo-2 {
-    flex-grow: 9;
-    top: 0.625rem;
-  }
-  .logo-3 {
-    flex-grow: 0.2;
-    width: fit-content;
-  }
-  .logo-4 {
-    flex-grow: 0.8;
-  }
-  .logo-5{
-    flex-grow: 1;
-  }
-  .blue {
-    color: #00b1fc;
-  }
-  .head-text {
-    color: rgba(37, 37, 37, 0.734);
-  }
-  .list-elm-color {
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.877);
-  }
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: rgb(255, 255, 255);
+}
+
+.secondary-color {
+  color: #9D9D9D;
+}
+
+.show-button {
+  visibility: hidden;
+  display: none;
+}
+
+.font-styles {
+  font-family: "Exo", sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+.hidden-class {
+  visibility: hidden;
+}
+
+.flex-container>div {
+  background-color: #ffffff;
+  width: fit-content;
+  line-height: 1rem;
+}
+
+.saketa-logo {
+  width: 9rem;
+  top: 0.625rem;
+
+}
+
+.primary-text {
+  font-size: 2.2rem;
+  top: 0.56rem;
+  text-align: left;
+}
+
+.secondary-text {
+  font-size: 1.2rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.usergreeting {
+  font-size: 1.925rem;
+  top: 1.5rem;
+  left: 2.1rem;
+}
+
+.username {
+  font-size: 1.925rem;
+  flex-grow: 1;
+  top: 1.5rem;
+  left: 0.6rem;
+}
+
+.user-image {
+  width: 3.98rem;
+  height: 3rem;
+  top: 0.687rem;
+  left: -2.5rem;
+}
+
+.menu-button {
+  display: none;
+  flex-grow: 1;
+}
+
+.saketa-icon {
+  flex-grow: 1;
+}
+
+.employee-pic {
+  flex-grow: 1;
+}
+
+.employee-directory {
+  flex-grow: 9;
+  top: 0.625rem;
+}
+
+.welcome {
+  flex-grow: 0.2;
+  width: fit-content;
+}
+
+.employee {
+  flex-grow: 0.8;
+}
+
+.blue {
+  color: #00b1fc;
+}
 
 
 @media screen and (max-width: 51.25em) {
-  .logo-2 {
+  .employee-directory {
     flex-grow: 9;
     top: 0.625rem;
     left: 3.5rem;
+  }
+
+  .user-image {
+    width: 3.68rem;
+    top: 0.68rem;
+    left: 46rem;
+  }
+
+  .username {
+    font-size: 1.625rem;
+    flex-grow: 1;
+    top: 1.5rem;
+    left: 47rem;
+  }
+
+  .usergreeting {
+    font-size: 1.625rem;
+    top: 1.5rem;
+    left: 49rem;
+  }
 }
-.employee1-nav {
-  width: 3.68rem;
-  top: 0.68rem;
-  left: 46rem;
-}
-.username-nav {
-  font-size: 1.625rem;
-  flex-grow: 1;
-  top: 1.5rem;
-  left: 47rem;
-}
-.usergreeting-nav {
-  font-size: 1.625rem;
-  top: 1.5rem;
-  left: 49rem;
-}
-}
+
 /*1024 screen*/
 @media screen and (max-width: 64em) {
-  .logo-2 {
+  .employee-directory {
     flex-grow: 9;
     top: 0.625rem;
     left: 3.5rem;
-}
-.employee1-nav {
-  width: 3.68rem;
-  top: 0.68rem;
-  left: 34rem;
-}
-.username-nav {
-  font-size: 1.625rem;
-  flex-grow: 1;
-  top: 1.5rem;
-  left: 34rem;
-}
-.usergreeting-nav {
-  font-size: 1.625rem;
-  top: 1.5rem;
-  left: 34rem;
-}
-}
+  }
 
+  .user-image {
+    width: 3.68rem;
+    top: 0.68rem;
+    left: 33rem;
+  }
 
+  .username {
+    font-size: 1.625rem;
+    flex-grow: 1;
+    top: 1.5rem;
+    left: 33rem;
+  }
 
-/*mobile devices*/
-@media screen and (max-width: 23.75em) {
-  .logo-2 {
-    flex-grow: 9;
-    top: 0.625rem;
-    left: 5.56rem;
+  .usergreeting {
+    font-size: 1.625rem;
+    top: 1.5rem;
+    left: 33rem;
+  }
 }
-.head-nav {
-  visibility: hidden;
-}
-.text-nav {
-  visibility: hidden;
-}
-.employee1-nav {
-  width: 3.68rem;
-  top: 0.68rem;
-  left: 62rem;
-}
-.username-nav {
- visibility: hidden;
-}
-.usergreeting-nav {
-  visibility: hidden;
-}
-.logo-nav{
-  visibility: hidden;
-}
-.menu{
-  width: 10rem;
-  height: 7rem;
-}
-
-}
-
-
 /*ipads and tablets*/
 @media screen and (max-width:33.75em) {
-  .logo-2 {
+  .employee-directory {
     flex-grow: 9;
     top: 0.625rem;
     left: 3.5rem;
+  }
+
+  .user-image {
+    width: 3.68rem;
+    top: 0.68rem;
+    left: 62rem;
+  }
+
+  .username {
+    font-size: 1.625rem;
+    flex-grow: 1;
+    top: 1.5rem;
+    left: 61rem;
+  }
+
+  .usergreeting {
+    font-size: 1.625rem;
+    top: 1.5rem;
+    left: 61rem;
+  }
 }
-.employee1-nav {
-  width: 3.68rem;
-  top: 0.68rem;
-  left: 62rem;
+
+@media screen and (max-width:57em) {
+
+  .user-image {
+    width: 3.68rem;
+    top: 0.68rem;
+    left: 43rem;
+  }
+
+  .username {
+    font-size: 1.625rem;
+    flex-grow: 1;
+    top: 1.5rem;
+    left: 42rem;
+  }
+
+  .usergreeting {
+    font-size: 1.625rem;
+    top: 1.5rem;
+    left: 42rem;
+  }
 }
-.username-nav {
-  font-size: 1.625rem;
-  flex-grow: 1;
-  top: 1.5rem;
-  left:61rem;
-}
-.usergreeting-nav {
-  font-size: 1.625rem;
-  top: 1.5rem;
-  left: 61rem;
-}
-}
+
 /*extra large screens and tv's*/
 @media screen and (width: 80em) {
-  .logo-2 {
+  .employee-directory {
     flex-grow: 9;
     top: 0.625rem;
     left: 3.5rem;
-}
-.employee1-nav {
-  width: 3.68rem;
-  top: 0.68rem;
-  left: 19rem;
-}
-.username-nav {
-  font-size: 1.625rem;
-  flex-grow: 1;
-  top: 1.5rem;
-  left:19rem;
-}
-.usergreeting-nav {
-  font-size: 1.625rem;
-  top: 1.5rem;
-  left: 19rem;
-}
-}
-
-
-  @media screen and (width: 120em) {
- 
-  
-    .usergreeting-nav {
-      font-size: 1.625rem;
-      top: 1.5rem;
-      left: -13.5rem;
   }
-    .username-nav {
-      font-size: 1.625rem;
-      flex-grow: 1;
-      top: 1.5rem;
-      left: -15rem;
-    }
-    .employee1-nav {
-      width: 3.68rem;
-      top: 0.68rem;
-      left: -20rem;
-    }
-    
-}  
+
+  .user-image {
+    width: 3.68rem;
+    top: 0.68rem;
+    left: 19rem;
+  }
+
+  .username {
+    font-size: 1.625rem;
+    flex-grow: 1;
+    top: 1.5rem;
+    left: 20rem;
+  }
+
+  .usergreeting {
+    font-size: 1.625rem;
+    top: 1.5rem;
+    left: 20rem;
+  }
+}
+
+
+@media screen and (width: 120em) {
+
+
+  .usergreeting {
+    font-size: 1.625rem;
+    top: 1.5rem;
+    left: -11.5rem;
+  }
+
+  .username {
+    font-size: 1.625rem;
+    flex-grow: 1;
+    top: 1.5rem;
+    left: -13rem;
+  }
+
+  .user-image {
+    width: 3.68rem;
+    top: 0.68rem;
+    left: -18rem;
+  }
+
+}
