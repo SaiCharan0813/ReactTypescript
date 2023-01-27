@@ -13,7 +13,6 @@ function AddEmp({ closeEmp }: props) {
   var employees: IEmployee[] = JSON.parse(
     localStorage.getItem("employees") || "[]"
   );
-
   var [employeeImage, setemployeeImage] = useState<string>("");
   const [employeeFirstname, setemployeeFirstname] = useState<string>("");
   const [employeeLastname, setemployeeLastname] = useState<string>("");
