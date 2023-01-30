@@ -59,9 +59,52 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
       setalert("Please enter your last name!");
       return false;
     }
+<<<<<<< HEAD
     if (employeePrefferedname.length == 0) {
       setalert("Please enter your preffered name!");
       return false;
+=======
+
+    function previewFile(event : any){
+      var file=event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onloadend= (e) => {
+        image_url = reader.result;
+   
+      }
+      if(file){
+        reader.readAsDataURL(file);
+      }
+     }
+    //Function used to save the details of the employee to the local storage
+  
+    function saveDetails():void{
+        let val_res:boolean=validateEmp()
+        if(val_res){
+            emp_img=image_url;
+            current_emp.Employee_Img=emp_img
+            current_emp._id=current_emp._id;
+            current_emp.First_Name =f_name;
+            current_emp.Last_Name =l_name;
+            current_emp.Preffered_Name =prfrd_name;
+            current_emp.Title =jobtitle;
+            current_emp.Office_Details =office;
+            current_emp.Dept_Name =dept;
+            current_emp.Skype_Id =skypeid;
+            current_emp.Email_id =emial;
+            current_emp.phone_no =phno
+        window.alert(`Employee ${f_name} details updated succesfully`)
+        setalert('')
+        setedit(false)
+        localStorage.setItem("employees",JSON.stringify(ee))
+
+        //To dispatch an event to let know for employee directory that the local storage has been updated
+
+        window.dispatchEvent(new Event('storage')); 
+        }
+   
+>>>>>>> 5cb9d471710012836b4167b3c0ddf536f37fc7f0
     }
     if (employeeDepartment == "Select") {
       setalert("Please select a deartment name!");
