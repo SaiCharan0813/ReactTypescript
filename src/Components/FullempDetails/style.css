@@ -2,6 +2,7 @@
 
 
 .employee-fulldetails {
+<<<<<<< HEAD
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -12,6 +13,93 @@
   bottom: -1rem;
   right: 1rem;
   z-index: 5;
+=======
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40rem;
+    background-color: rgb(228, 228, 228);
+    border-radius: -0.5rem;
+    height: 41rem;
+    bottom: 33rem;
+    left: 34rem;
+  
+  }
+  .font-family2{
+    font-family: "Exo", sans-serif;
+    font-family: "Montserrat", sans-serif;
+  }
+  .font-family3{
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .content {
+    position: relative;
+    bottom: 42px;
+    left: 12rem;
+    text-align: left;
+  }
+  .hide-sidebar{
+    display: none;
+  }
+  .alert-text {
+    color: red;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .content-editable {
+    display: block;
+    position: relative;
+    top: -2rem;
+    left: 12rem;
+    text-align: left;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .content-editable-hidden {
+    display: none;
+  }
+  .head-text {
+    color: rgba(37, 37, 37, 0.734);
+    height: 1rem;
+    
+  }
+  .drop-options select option {
+    width: 100%;
+    height: 0.5rem;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .button {
+    border: none;
+    padding: 10px;
+    color: white;
+  
+  }
+  .desc {
+    text-align: left;
+  }
+  .details-div {
+    height: 3rem;
+    padding-left: 5rem;
+    align-items: center;
+  }
+  .edit-btn {
+    margin-right: 1.5rem 0px 0px 2rem;
+  }
+  .emp-image-fulldetails {
+    width: 7rem;
+    margin: 10px 0px 20px 16rem;
+  }
+  .close {
+    top: 20px;
+    right: 2rem;
+    cursor: pointer;
+  }
+  @media screen and (max-width:25.75em) {
+>>>>>>> 5cb9d471710012836b4167b3c0ddf536f37fc7f0
 
 }
 
