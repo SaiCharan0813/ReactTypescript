@@ -1,39 +1,59 @@
-.add_emp {
+  .adding-employee {
     display: block;
-    width: 30vw;
+    width: 32vw;
     height: 85vh;
-    position: absolute;
-    padding: 2vw;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 2rem;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     overflow-y: scroll;
     overflow-x: hidden;
-    top: 2vh;
-    right: 2vw;
+    top: 0vh;
+    right: 0vw;
     z-index: 2;
-    background-color: rgb(245, 245, 245);
+    background-color: #E59866 ;
     text-align: left;
   }
- 
-  .font-family3{
+
+  .font-styles {
     font-family: "Source Sans Pro", sans-serif;
   }
-  .head-text2 {
+
+  .form-title {
     color: rgba(37, 37, 37, 0.734);
     height: 3rem;
+    left: 5rem;
+    bottom: 3rem;
   }
-  .position-absolute{
+
+  .form-field {
+    color: #17202A;
+    height: 2rem;
+    top: 1rem;
+  }
+.close-form{
+  color:whitesmoke;
+  background-color: red;
+  left: 10rem;
+  top: 3rem;
+}
+  .position-absolute {
     position: absolute;
   }
-  .emp-frm-elm {
+.position-relative{
+  position: relative;
+}
+  .form-field-value {
     width: 100%;
-    padding: 12px 20px;
+    height: 2rem;
+    padding: 1px 30px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: #ABEBC6;
+    border-radius: 25px;
     box-sizing: border-box;
   }
-  .drop-options select option {
+
+  .dropdown-options select option {
     width: 100%;
     height: 1vh;
     padding: 12px 20px;
@@ -42,45 +62,15 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
-  .close {
-    top: 2vh;
-    right: 2vw;
-    cursor: pointer;
-  }
-  .alert-text {
+
+  .alert-message {
     color: red;
     text-align: center;
-    
+
   }
-  .add-emp-submit {
-    color: white,
-    
-  
-  }
-  .add-emp-submit{
+
+  .employee-submit-button {
     color: white;
     background-color: #3399ff;
     margin: 2vh 0vw 0vw 12vw;
   }
-   /*mobile devices*/
-@media screen and (max-width: 25.75em) {
-  .add_emp {
-    display: block;
-    width: 189vw;
-    height: 66vh;
-    position: absolute;
-    padding: 7vw;
-    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    top: 5vh;
-    right: -5rem;
-    z-index: 5;
-    background-color: rgb(245, 245, 245);
-    text-align: left;
-}
-  
-  .font-family3{
-    font-family: "Source Sans Pro", sans-serif;
-  }
-}

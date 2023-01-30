@@ -1,74 +1,53 @@
- .emp-image {
-    width: 7rem;
-    height: 5.75rem;
-}
-  .emp-name {
-    font-size: 1em;
-    bottom: 5.5rem;
-    left: 6.25rem;
-    width: 68%;
-}
-.emp-dsgn {
-  font-size: 0.8rem;
-  bottom: 6.625rem;
-  left: 6.25rem;
-}
-.emp-dept {
-  font-size: 0.8rem;
-  bottom: 7.75rem;
-  left: 6.31rem;
-}
-.emp-icons {
-  list-style: none;
-  color: rgba(128, 128, 128, 0.836);
-  bottom: 9.31rem;
-  left: 6rem;
-}
-  .emp-icon {
-    display: inline;
-    padding: 0.187rem;
-  } 
-  .emp-details {
-    width: 16.2rem;
-    height: 5rem;
-    background-color: rgba(219, 218, 218, 0.753);
-    text-align: left;
-  }
- 
-  
-  
-  .cards{
-    width: 100%;
-    height: 6.375rem;
-    background-color: rgba(219, 218, 218, 0.753);
-  }
-  @media screen and (max-width:25.75em) {
-   
-    .emp-details {
-      width: 107%;
-      height: 14rem;
-      position: relative;
-      bottom: 47rem;
-      background-color: rgba(219, 218, 218, 0.753);
-      text-align: left;
-     }
-    emp-image {
-      width: 10rem;
-      height: 10.75rem;
-      }
-    .emp-name {
-      font-size: 3em;
-      bottom: -1.5rem;
-      left: 6.25rem;
-      width: 65%;
-    }
-    .emp-dsgn{
-      visibility: hidden;
-    }
-    .emp-dept{
-      visibility: hidden;
-    }
-    .emp-icons{
-      visibility: hidden;
-    }
-  }
+ .employee-image {
+   width: 7rem;
+   height: 5.75rem;
+ }
+
+ .card-details-color {
+   color: #A4A3A3;
+ }
+
+ .cards-background-color {
+   background-color: rgba(219, 218, 218, 0.753);
+ }
+
+ .employee-name {
+   font-size: 1em;
+   bottom: 5.5rem;
+   left: 6.25rem;
+   width: 68%;
+ }
+
+ .employee-designation {
+   font-size: 0.8rem;
+   bottom: 6.425rem;
+   left: 6.25rem;
+ }
+
+ .employee-department {
+   font-size: 0.8rem;
+   bottom: 7.55rem;
+   left: 6.31rem;
+ }
+
+ .social-icons {
+   list-style: none;
+   bottom: 8.6rem;
+   left: 6rem;
+ }
+
+ .social-icon {
+   display: inline;
+   padding: 0.187rem;
+ }
+
+ .employee-details {
+   width: 16.2rem;
+   height: 5rem;
+   text-align: left;
+ }
+
+ .cards {
+   width: 100%;
+   height: 6.375rem;
+ }
