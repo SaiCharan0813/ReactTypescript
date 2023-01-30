@@ -85,11 +85,7 @@ const FullEmployee:React.FC =() => {
       console.log(ee)
       localStorage.setItem("employees", JSON.stringify(ee));
     }
-    // function deleting(rId: any){
-    //   let temp = employes.filter((item: { id: any; }) => item.id != rId);
-    //   localStorage.setItem("employees",JSON.stringify(temp))
-    // }
-    // deleting(current_emp._id)
+
     function previewFile(event : any){
       var file=event.target.files[0];
       const reader = new FileReader();
