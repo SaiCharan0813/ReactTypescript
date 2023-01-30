@@ -78,7 +78,6 @@ const SideBar: React.FC<props> = (show_sidebar) => {
   }
 
 
-
   function filterBy() {
     if (searchCategory == "First_Name") {
       setfilterEmployees(

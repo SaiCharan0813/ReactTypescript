@@ -13,7 +13,6 @@ function AddEmp({ closeEmp }: props) {
   var employees: IEmployee[] = JSON.parse(
     localStorage.getItem("employees") || "[]"
   );
-
   var [employeeImage, setemployeeImage] = useState<string>("");
   const [employeeFirstname, setemployeeFirstname] = useState<string>("");
   const [employeeLastname, setemployeeLastname] = useState<string>("");
@@ -104,14 +103,7 @@ function AddEmp({ closeEmp }: props) {
       };
       employees.push(employee1);
       localStorage.setItem("employees", JSON.stringify(employees));
-      // setTimeout(() => {
-      //   window.alert(`New user ${employeeFirstname} was added`);
-      // }, 2000);
-
       closeEmp(false)
-
-
-
       //To set all the employee form fields to empty
       setemployeeFirstname("");
       setemployeeLastname("");
