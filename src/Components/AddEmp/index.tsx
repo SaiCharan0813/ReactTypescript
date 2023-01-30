@@ -106,10 +106,7 @@ function AddEmp( {closeEmp}:props) {
       };
       employees.push(employee1);
       localStorage.setItem("employees", JSON.stringify(employees));
-      setTimeout(()=>{
-        window.alert(`New user ${f_name} was added`);
-      },200)
-      
+      window.alert(`New user ${f_name} was added`);
       
       //To set all the employee form fields to empty
       setf_name("");
