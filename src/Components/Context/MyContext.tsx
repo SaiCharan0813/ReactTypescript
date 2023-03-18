@@ -1,5 +1,6 @@
 import { type } from '@testing-library/user-event/dist/type';
-import React, { createContext, useState } from 'react';
+import axios from 'axios';
+import React, { createContext, useEffect, useState } from 'react';
 import IEmployee from "../IEmployee/IEmployee";
 
 type MyContextType = {
@@ -10,14 +11,14 @@ type MyContextType = {
   filterbyOffice: (filterbyOffice: string) => void;
   filterbyJobtitle: (jobtitle: string) => void;
 }
+//JSON.parse(localStorage.getItem("employees") || "[]"),
 const initialState = {
-  allEmployees: JSON.parse(localStorage.getItem("employees") || "[]"),
-  filterEmployees: JSON.parse(localStorage.getItem("employees") || "[]"),
+  allEmployees: [],
+  filterEmployees: [],
   setfilterEmployees: [],
   filterbyDepartment: (department: string) => { },
   filterbyOffice: (filterbyOffice: string) => { },
   filterbyJobtitle: (filterbyJobtitle: string) => { }
-
 }
 
 export const MyContext = createContext<MyContextType>(initialState);
@@ -29,12 +30,27 @@ type Props = {
 export const MyContextProvider = ({ children }: Props) => {
   const employee: IEmployee[] = JSON.parse(localStorage.getItem("employees") || "[]")
   const [filterEmployees, setfilterEmployees] = useState(employee)
-  const [allEmployees, setallEmployees] = useState(employee)
-  console.log(filterEmployees)
+  const [allEmployees, setallEmployees] = useState([])
+ // const [allEmployeesList, setallEmployeesList] = useState<any>([])
+  //console.log(filterEmployees)
+ useEffect(() => {
+    const getEmployesDetails=async ()=>{
+      await axios.get('https://localhost:7055/api/Values/api/Values')
+      .then((response) => {
+        setfilterEmployees(response.data)
+        setallEmployees(response.data)  
+        })
+      .catch((error) => {
+        console.log(error);
+      })
+    } 
+    getEmployesDetails();
+   },[])
+  //  console.log("aabbcc",allEmployees);
   function filterbyDepartment(department: string) {
     console.log("inside context")
     setfilterEmployees(allEmployees.filter((emp: IEmployee) => {
-      if (emp.Dept_Name.toLowerCase() == department.toLowerCase()) {
+      if (emp.departmentId.toLowerCase() == department.toLowerCase()) {
         return emp;
       }
     })
@@ -42,8 +58,10 @@ export const MyContextProvider = ({ children }: Props) => {
   }
 
   function filterbyOffice(filterbyOffice: string) {
+    console.log(filterbyOffice,allEmployees);
+    
     setfilterEmployees(allEmployees.filter((emp: IEmployee) => {
-      if (emp.Office_Details.toLowerCase() == filterbyOffice.toLowerCase()) {
+      if (emp.officeId.toLowerCase() == filterbyOffice.toLowerCase()) {
         return emp;
       }
     })
@@ -52,7 +70,7 @@ export const MyContextProvider = ({ children }: Props) => {
 
   function filterbyJobtitle(jobtitle: string) {
     setfilterEmployees(allEmployees.filter((emp: IEmployee) => {
-      if (emp.Title.toLowerCase() == jobtitle.toLowerCase()) {
+      if (emp.jobTitleId.toLowerCase() == jobtitle.toLowerCase()) {
         return emp;
       }
     })

@@ -14,19 +14,18 @@ import { ReactComponent as Heart } from '../assets/heart-fill.svg'
 import FullEmployee from '../FullempDetails';
 import { Modal } from 'react-bootstrap';
 interface props {
-  Employee_Img: any,
-  _id: string,
-  Preffered_Name: string,
-  Designation: string,
-  Department: string
+  image: any,
+  employeeId: string,
+  prefferedName: string,
+  jobTitleId: string,
+  departmentId: string
 }
 
-const EmployeeCard: React.FC<props> = ({ _id, Employee_Img, Preffered_Name, Designation, Department }) => {
+const EmployeeCard: React.FC<props> = ({ employeeId, image, prefferedName, jobTitleId, departmentId }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   //Component to diaplay the employee card  
-
   return (
     <>
       <Link to={``} style={{
@@ -40,11 +39,10 @@ const EmployeeCard: React.FC<props> = ({ _id, Employee_Img, Preffered_Name, Desi
                 handleShow()
               }}>
 
-                <img src={Employee_Img} alt="Employee2" className="employee-image" />
-
-                <p className="employee-name position-relative">{Preffered_Name}</p>
-                <p className="employee-designation position-relative card-details-color">{Designation}</p>
-                <p className="employee-department position-relative card-details-color">{Department}</p>
+                <img src={image} alt="Employee2" className="employee-image" />
+                <p className="employee-name position-relative">{prefferedName}</p>
+                <p className="employee-designation position-relative card-details-color">{jobTitleId}</p>
+                <p className="employee-department position-relative card-details-color">{departmentId}</p>
                 <ul className="social-icons position-relative card-details-color">
 
                   <li className="social-icon ">
@@ -68,7 +66,7 @@ const EmployeeCard: React.FC<props> = ({ _id, Employee_Img, Preffered_Name, Desi
           </Card>
           <Modal show={show} onHide={handleClose}>
             <Modal.Body>
-              <FullEmployee id={_id} closeEditform={handleClose} />
+              <FullEmployee employeeId ={employeeId} closeEditform={handleClose} />
             </Modal.Body>
           </Modal>
         </div>

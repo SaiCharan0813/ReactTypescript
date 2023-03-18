@@ -55,21 +55,21 @@
 .usergreeting {
   font-size: 1.925rem;
   top: 1.5rem;
-  left: 2.1rem;
+  left: 5.3rem;
 }
 
 .username {
   font-size: 1.925rem;
   flex-grow: 1;
   top: 1.5rem;
-  left: 0.6rem;
+  left: 3.8rem;
 }
 
 .user-image {
   width: 3.98rem;
   height: 3rem;
   top: 0.687rem;
-  left: -2.5rem;
+  left: 0.7rem;
 }
 
 .menu-button {

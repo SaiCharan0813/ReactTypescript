@@ -1,3 +1,5 @@
+import axios from "axios";
+import { Console } from "console";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import '../AddEmp/style.css'
@@ -22,7 +24,7 @@ function AddEmp({ closeEmp }: props) {
   const [employeeDepartment, setemployeeDepartment] = useState<string>("Select");
   const [employeeSkypeid, setemployeeSkypeid] = useState<string>("");
   const [employeeEmail, setemployeeEmail] = useState<string>("");
-  const [employeePhonenumber, setemployeePhonenumber] = useState<string>("");
+  const [employeePhonenumber, setemployeePhonenumber] = useState<number>(0);
   const [alert, setalert] = useState<string>("");
 
   //Function to validate employee details from add employee form
@@ -52,7 +54,7 @@ function AddEmp({ closeEmp }: props) {
       setalert("please enter employeeSkypeid");
       return false;
     }
-    if (employeePhonenumber.length != 12) {
+    if (employeePhonenumber?.toString().length != 10) {
       setalert("please enter the valid phone number");
       return false;
     }
@@ -82,42 +84,37 @@ function AddEmp({ closeEmp }: props) {
     }
   }
 
-  //Function to add a employee to the directory (local storage) if validated to be satisfying all the required criteria
-  function addEmp(): void {
+  const addEmpBackend = async () => {
+    //console.log("charan")
     let validate_res: boolean = validateEmp();
     if (validate_res) {
       employeeImage = image_url;
-      var employee1: IEmployee = {
-        _id: uuid().slice(0, 8),
-        Employee_Img: employeeImage,
-        First_Name: employeeFirstname,
-        Last_Name: employeeLastname,
-        Preffered_Name: employeePrefferedname,
-        Title: employeeJobtitle,
-        Office_Details: employeeOffice,
-        Dept_Name: employeeDepartment,
-        Skype_Id: employeeSkypeid,
-        Email_id: employeeEmail,
-        phone_no: employeePhonenumber,
+      await axios.post('https://localhost:7055/api/Values',
+        {
+          "employeeId": uuid().toString(),
+          "firstName": employeeFirstname,
+          "lastName": employeeLastname,
+          "prefferedName": employeePrefferedname,
+          "email": employeeEmail,
+          "jobTitleId": employeeJobtitle,
+          "officeId": employeeOffice,
+          "departmentId": employeeDepartment,
+          "phoneNumber": employeePhonenumber,
+          "skypeId": employeeSkypeid,
+          "image": employeeImage.toString()
 
-      };
-      employees.push(employee1);
-      localStorage.setItem("employees", JSON.stringify(employees));
+        }
+
+      )
+        .then(e => console.log(e))
+        .catch(error => console.log(error))
       closeEmp(false)
-      //To set all the employee form fields to empty
-      setemployeeFirstname("");
-      setemployeeLastname("");
-      setemployeePrefferedname(employeeFirstname + employeeLastname);
-      setemployeeJobtitle("Select");
-      setemployeeOffice("Select");
-      setemployeeDepartment("Select");
-      setemployeeEmail("");
-      setemployeePhonenumber("");
-
-      //To dispatch an event to let know for employee directory that the local storage has been updated
-      window.dispatchEvent(new Event("storage"));
+      window.location.reload();
+      //console.log(JSON.stringify(obj))
     }
   }
+
+
   return (
     <div id="add-emp-list" className="adding-employee position-absolute">
       <button className="close-form position-relative" onClick={() => closeEmp(false)}>Close Form</button>
@@ -197,20 +194,21 @@ function AddEmp({ closeEmp }: props) {
           onChange={(event) => setemployeeEmail(event.target.value)} />
         <label htmlFor="Phn_no" className="form-field"><b>Phone No</b></label>
         <input
-          type="tel"
+          type="number"
           name="Phn_no"
           className="form-field-value"
           pattern="[0-9]{2}[0-9]{10}"
           placeholder="91xxxxxxxxxx"
           value={employeePhonenumber}
-          onChange={(event) => setemployeePhonenumber(event.target.value)}
+          onChange={(event) => setemployeePhonenumber(event.target.valueAsNumber)}
         />
         <p id="alert-msg" className="alert-message font-styles">{alert}</p>
         <input
           type="button"
           className="button font-styles employee-submit-button"
           onClick={() => {
-            addEmp()
+            //addEmp()
+            addEmpBackend()
           }}
           value="Add Employee"
         />

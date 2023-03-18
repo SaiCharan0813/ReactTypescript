@@ -9,47 +9,58 @@ import { ReactComponent as Skype } from '../assets/icons8-skype.svg'
 import { ReactComponent as Edit } from '../assets/edit-button.svg'
 import { ReactComponent as Delete } from '../assets/delete.svg'
 import { MyContext } from "../Context/MyContext";
+import axios from "axios";
 
 interface props {
-  id: string
+  employeeId: string
   closeEditform: any
 }
-var employees: IEmployee[] = JSON.parse(
-  localStorage.getItem("employees") || "[]"
-);
+
 var current: number
 var image_url: any
-const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
+const FullEmployee: React.FC<props> = ({ employeeId, closeEditform }) => {
+  const { filterEmployees, setfilterEmployees } = useContext(MyContext)
+  const [allEmployees, setallEmployees] = useState([]);
+  useEffect(() => {
+    const getEmployesDetails = async () => {
+      await axios.get('https://localhost:7055/api/Values/api/Values')
+        .then((response) => {
+          setfilterEmployees(response.data)
+          setallEmployees(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    getEmployesDetails();
+
+  }, [])
+  var employees: IEmployee[] = allEmployees;
+  console.log("kk", employees);
   //To retrieve the id from the url
   let { _id } = useParams();
-  //To retrieve the employee details from local storage
-  let ee: IEmployee[] = JSON.parse(localStorage.getItem("employees") || "[]");
   //To find the employee details from the id sent in the url
-  let current_emp: IEmployee = ee.find((emp) => emp._id == id)!
-  current = ee.findIndex((emp) => emp == current_emp)!
+  let current_emp: IEmployee = filterEmployees.find((emp: { employeeId: string; }) => emp.employeeId == employeeId)!
+  current = filterEmployees.findIndex((emp: IEmployee) => emp == current_emp)!
   //Declaring the all useState hooks needed below
   const [edit, setedit] = useState<boolean>(false)
   var [emp_img, setemp_img] = useState<string>("");
-  image_url = current_emp.Employee_Img
-  const [employeeFirstname, setemployeeFirstname] = useState<string>(current_emp.First_Name)
-  const [employeeLastname, setemployeeLastname] = useState<string>(current_emp.Last_Name)
-  const [employeePrefferedname, setemployeePrefferedname] = useState<string>(current_emp.Preffered_Name)
-  const [employeeJobtitle, setemployeeJobtitle] = useState<string>(current_emp.Title)
-  const [employeeOffice, setemployeeOffice] = useState<string>(current_emp.Office_Details)
-  const [employeeDepartment, setemployeeDepartment] = useState<string>(current_emp.Dept_Name)
-  const [employeeSkypeid, setemployeeSkypeid] = useState<string>(current_emp.Skype_Id)
-  const [employeeEmail, setemployeeEmail] = useState<string>(current_emp.Email_id)
-  const [employeePhonenumber, setemployeePhonenumber] = useState<string>(current_emp.phone_no.toString())
+
+  image_url = current_emp.image
+  const [employeeFirstname, setemployeeFirstname] = useState<string>(current_emp.firstName)
+  const [employeeLastname, setemployeeLastname] = useState<string>(current_emp.lastName)
+  const [employeePrefferedname, setemployeePrefferedname] = useState<string>(current_emp.prefferedName)
+  let [employeeJobtitle, setemployeeJobtitle] = useState<string>(current_emp.jobTitleId)
+  let [employeeOffice, setemployeeOffice] = useState<string>(current_emp.officeId)
+  let [employeeDepartment, setemployeeDepartment] = useState<string>(current_emp.departmentId)
+  const [employeeSkypeid, setemployeeSkypeid] = useState<string>(current_emp.skypeId)
+  const [employeeEmail, setemployeeEmail] = useState<string>(current_emp.email)
+  const [employeePhonenumber, setemployeePhonenumber] = useState<string>(current_emp.phoneNumber.toString())
   const [alert, setalert] = useState<string>("")
-  const { filterEmployees, setfilterEmployees } = useContext(MyContext)
+
 
   //Function used to validate the employee details when edited the particular employee
-  //To re render the employee directory when local storage is updated
-  useEffect(() => {
-    window.addEventListener("storage", () => {
-      setfilterEmployees(JSON.parse(localStorage.getItem("employees") || "[]"))
-    });
-  }, []);
+  
   function validateEmp(): boolean {
     if (employeeFirstname.length == 0) {
       setalert("Please enter your first name!");
@@ -79,7 +90,7 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
       setalert("Please enter your skype ID!");
       return false;
     }
-    if (employeePhonenumber.length != 12) {
+    if (employeePhonenumber.length != 10) {
       setalert("Please enter a valid phone number!");
       return false;
     }
@@ -95,11 +106,13 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
 
     return true;
   }
-  function deleteEmpoloyee() {
+
+  function deleteEmployee() {
     console.log(current)
-    ee.splice(current, 1)
-    console.log(ee)
-    localStorage.setItem("employees", JSON.stringify(ee));
+    allEmployees.splice(current, 1)
+    console.log(allEmployees)
+    localStorage.setItem("employees", JSON.stringify(allEmployees));
+
   }
 
   function previewFile(event: any) {
@@ -116,27 +129,29 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
     }
   }
   //Function used to save the details of the employee to the local storage
+  console.log("dd", current_emp.employeeId);
 
   function saveDetails(): void {
     let val_res: boolean = validateEmp()
     if (val_res) {
       emp_img = image_url;
-      //current_emp.Employee_Img = emp_img;
-      current_emp._id = current_emp._id;
-      current_emp.First_Name = employeeFirstname;
-      current_emp.Last_Name = employeeLastname;
-      current_emp.Preffered_Name = employeePrefferedname;
-      current_emp.Title = employeeJobtitle;
-      current_emp.Office_Details = employeeOffice;
-      current_emp.Dept_Name = employeeDepartment;
-      current_emp.Skype_Id = employeeSkypeid;
-      current_emp.Email_id = employeeEmail;
-      current_emp.phone_no = employeePhonenumber
+      // current_emp.image = emp_img;
+
+      current_emp.employeeId = current_emp.employeeId;
+      current_emp.firstName = employeeFirstname;
+      current_emp.lastName = employeeLastname;
+      current_emp.prefferedName = employeePrefferedname;
+      current_emp.jobTitleId = employeeJobtitle;
+      current_emp.officeId = employeeOffice;
+      current_emp.departmentId = employeeDepartment;
+      current_emp.skypeId = employeeSkypeid;
+      current_emp.email = employeeEmail;
+      current_emp.phoneNumber = employeePhonenumber
       closeEditform(false)
       //window.alert(`Employee ${employeeFirstname} details updated succesfully`)
       setalert('')
       setedit(false)
-      localStorage.setItem("employees", JSON.stringify(ee))
+      localStorage.setItem("employees", JSON.stringify(allEmployees))
 
       //To dispatch an event to let know for employee directory that the local storage has been updated
 
@@ -145,6 +160,36 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
 
   }
 
+  const saveDetailsBackend = async () => {
+    //console.log("charan")
+    let val_res: boolean = validateEmp()
+    if (val_res) {
+      emp_img = image_url;
+      console.log(employeeFirstname)
+      await axios.put(`https://localhost:7055/api/Values?EmployeeId=${employeeId}`,
+        {
+          "employeeId": current_emp.employeeId,
+          "firstName": employeeFirstname,
+          "lastName": employeeLastname,
+          "prefferedName": employeePrefferedname,
+          "email": employeeEmail,
+          "jobTitleId": employeeJobtitle,
+          "officeId": employeeOffice,
+          "departmentId": employeeDepartment,
+          "phoneNumber": employeePhonenumber,
+          "skypeId": employeeSkypeid,
+          "image": current_emp.image.toString()
+        }
+
+      )
+        .then(e => console.log(e))
+        .catch(error => console.log(error))
+      closeEditform(false)
+      window.location.reload();
+      //console.log(JSON.stringify(obj))
+    }
+  }
+  console.log("charann");
   return (
     <>{
       <div id="employee-full-details " className={`employee-fulldetails edit-employee-backgroundcolor position-relative $(edits:""?"display-hidden")`}>
@@ -158,9 +203,9 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
           onClick={() => { closeEditform(false) }}
 
         />
-        {/* <button className="close position-relative" onClick={() => { closeEditform(false) }}>Close Popup</button> */}
+       
         <img
-          src={current_emp.Employee_Img}
+          src={current_emp.image}
           alt="employee"
           className={`emp-image-fulldetails position-relative ${edit ? 'content-editable-hidden' : 'image-edit'} `}
         />
@@ -172,42 +217,42 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
 
         <div className="details-editing position-relative">
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>First Name : </b></p>
-          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content-tohide position-relative'} `}>{current_emp.First_Name}</p>
+          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content-tohide position-relative'} `}>{current_emp.firstName}</p>
           <input
             type="text"
             className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}
-            onChange={event => setemployeeFirstname(event.target.value)}
-            defaultValue={current_emp.First_Name}
+            onChange={event => { setemployeeFirstname(event.target.value); console.log(event.target.value) }}
+            defaultValue={current_emp.firstName}
           />
         </div>
 
         <div className="details-editing position-relative">
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Last Name : </b></p>
-          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content-tohide position-relative'} `}>{current_emp.Last_Name}</p>
+          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content-tohide position-relative'} `}>{current_emp.lastName}</p>
           <input
             type="text"
             className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}
             onChange={event => setemployeeLastname(event.target.value)}
-            defaultValue={current_emp.Last_Name}
+            defaultValue={current_emp.lastName}
           />
         </div>
 
         <div className="details-editing position-relative">
 
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Preffered Name : </b></p>
-          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content employee-name-edit position-relative'} `}>{current_emp.Preffered_Name}</p>
+          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content employee-name-edit position-relative'} `}>{current_emp.prefferedName}</p>
           <input
             type="text"
             className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}
             onMouseOver={event => setemployeePrefferedname(employeeFirstname + employeeLastname)}
-            defaultValue={current_emp.Preffered_Name}
+            defaultValue={current_emp.prefferedName}
           />
         </div>
 
         <div className="details-editing position-relative">
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Office : </b></p>
-          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.Office_Details}</p>
-          <select className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `} defaultValue={current_emp.Office_Details} onChange={event => setemployeeOffice(event.target.value)}>
+          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.officeId}</p>
+          <select className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `} defaultValue={current_emp.officeId} onChange={event => setemployeeOffice(event.target.value)}>
             <option className="drop-options" value="Select">Select</option>
             <option value="Seattle">Seattle</option>
             <option value="India">India</option>
@@ -216,8 +261,8 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
 
         <div className="details-editing position-relative">
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Job Title : </b></p>
-          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.Title}</p>
-          <select className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `} defaultValue={current_emp.Title} onChange={event => setemployeeJobtitle(event.target.value)}>
+          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.jobTitleId}</p>
+          <select className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `} defaultValue={current_emp.jobTitleId} onChange={event => setemployeeJobtitle(event.target.value)}>
             <option className="drop-options" value="Select">Select</option>
             <option className="drop-options" value="SharePoint Practice Head">
               SharePoint Practice Head
@@ -248,8 +293,8 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
 
         <div className="details-editing position-relative">
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Department : </b></p>
-          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.Dept_Name}</p>
-          <select className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `} defaultValue={current_emp.Dept_Name} onChange={event => setemployeeDepartment(event.target.value)}>
+          <p className={`form-fields form-fields-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.departmentId}</p>
+          <select className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `} defaultValue={current_emp.departmentId} onChange={event => setemployeeDepartment(event.target.value)}>
             <option className="drop-options" value="Select">Select</option>
             <option value="IT">IT</option>
             <option value="Human resources">Human Resources</option>
@@ -261,37 +306,37 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
         <div className="details-editing position-relative">
           <p className={`form-fields form-fields-color edit-display ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>skype name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Skype /> </p>
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Skype ID : </b></p>
-          <p className={`form-fields form-fields-color editing-part-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.Skype_Id}</p>
+          <p className={`form-fields form-fields-color editing-part-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.skypeId}</p>
           <input
             type="text"
             className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}
             onChange={event => setemployeeSkypeid(event.target.value)}
-            defaultValue={current_emp.Skype_Id}
+            defaultValue={current_emp.skypeId}
           />
         </div>
 
         <div className="details-editing position-relative">
           <p className={`form-fields form-fields-color edit-display  ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Envolop /></p>
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Email ID : </b></p>
-          <p className={`form-fields editing-part-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.Email_id}</p>
+          <p className={`form-fields editing-part-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.email}</p>
           <input
             type="text"
             className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}
             onChange={event => setemployeeEmail(event.target.value)}
-            defaultValue={current_emp.Email_id}
+            defaultValue={current_emp.email}
           />
         </div>
 
         <div className="details-editing position-relative">
           <p className={`form-fields form-fields-color edit-display  ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>mobile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Phone /></p>
           <p className={`form-fields  editing-part form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}><b>Phone Number : </b></p>
-          <p className={`form-fields editing-part-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.phone_no}</p>
+          <p className={`form-fields editing-part-color ${edit ? 'content-editable-hidden' : 'content position-relative'} `}>{current_emp.phoneNumber}</p>
 
           <input
             type="tel"
             className={`form-fields form-fields-color ${edit ? 'content-editable' : 'content-editable-hidden'} `}
             onChange={event => setemployeePhonenumber(event.target.value)}
-            defaultValue={current_emp.phone_no}
+            defaultValue={current_emp.phoneNumber}
           />
 
         </div>
@@ -306,13 +351,13 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
             <Edit />
           </button>
           <button
-            onClick={() => { saveDetails() }}
+            onClick={(e) => { saveDetailsBackend() }}
             className={`button edit-button position-relative ${edit ? 'edit-btn' : 'content-editable-hidden'}`}
             style={{ color: "white", backgroundColor: "#0b8300" }}
           >
             Save Details
           </button>
-          <button className="delete-employee position-relative" onClick={() => { deleteEmpoloyee() }}><Delete /></button>
+          <button className="delete-employee position-relative" onClick={() => { deleteEmployee() }}><Delete /></button>
 
         </div>
       </div>
@@ -322,4 +367,5 @@ const FullEmployee: React.FC<props> = ({ id, closeEditform }) => {
 }
 
 export default FullEmployee
+
 

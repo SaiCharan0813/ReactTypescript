@@ -5,70 +5,99 @@ import '../SideBar/style.css'
 import IEmployee from "../IEmployee/IEmployee";
 import { MyContext } from "../Context/MyContext";
 import { useSearchParams } from "react-router-dom";
-
-
-
 import { Link, } from "react-router-dom";
 import AddEmp from "../AddEmp";
 import Employee_card from "../EmployeeCard";
 import { Modal } from 'react-bootstrap';
 import { ReactComponent as Person } from '../assets/person-fill.svg'
+import axios from "axios";
 interface props {
   show_sidebar: boolean
 }
 
 const SideBar: React.FC<props> = (show_sidebar) => {
-  //retrieving data from local storage
-  const employee: IEmployee[] = JSON.parse(localStorage.getItem("employees") || "[]")
-  var departments: string[] = ["IT", "Human resources", "MD", "Sales",];
-  var offices: string[] = ["Seattle", "India"];
-  var job_titles: string[] = [
-    "SharePoint Practice Head",
-    ".Net Development Lead",
-    "Recruiting Expert",
-    "BI Developer",
-    "Business Analyst",
-    "Project Lead",
-    "Summer Analyst",
-    "Manager"
-  ];
-
-  const { filterEmployees, setfilterEmployees } = useContext(MyContext)
+  const { filterEmployees, setfilterEmployees } = useContext(MyContext);
+  const [allEmployees, setallEmployees] = useState([]);
+  const [filterEmployeesByDepartment, setfilterEmployeesByDepartment] = useState([]);
+  const [filterEmployeesByOffice, setfilterEmployeesByOffice] = useState([]);
+  const [filterEmployeesByJobTitle, setfilterEmployeesByJobTitle] = useState([]);
   const [openEmp, setopenEmp] = useState(false);
+  //const [allEmployees,setallEmployees] = useContext(MyContext);
   const handleShow = () => setopenEmp(true);
   const handleClose = () => setopenEmp(false);
-  const employees: IEmployee[] = JSON.parse(
-    localStorage.getItem("employees") || "[]");
+  //////////////////////////////////////////////////////////
+  //To get all employees from database
+  useEffect(() => {
+    const getEmployesDetails = async () => {
+      await axios.get('https://localhost:7055/api/Values/api/Values')
+        .then((response) => {
+          setfilterEmployees(response.data)
+          setallEmployees(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    getEmployesDetails();
+
+  }, [])
+
+  //////////////////////////////////////////////
+  //////details for count of Departments
+  useEffect(() => {
+    const getEmployesDetails = async () => {
+      await axios.get('https://localhost:7055/api/Values/api/Values/EmployeesDepartment')
+        .then((response) => {
+          setfilterEmployeesByDepartment(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    getEmployesDetails();
+
+  }, [])
+
+  //////details for count of Offices
+  useEffect(() => {
+    const getEmployesDetails = async () => {
+      await axios.get('https://localhost:7055/api/Values/api/Values/EmployeesOffice')
+        .then((response) => {
+          setfilterEmployeesByOffice(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    getEmployesDetails();
+
+  }, [])
+
+  //////details for count of JobTitles
+  useEffect(() => {
+    const getEmployesDetails = async () => {
+      await axios.get('https://localhost:7055/api/Values/api/Values/EmployeesJobTitle')
+        .then((response) => {
+          setfilterEmployeesByJobTitle(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    getEmployesDetails();
+
+  }, [])
   const [search, setsearch] = useState<string>("");
   const [searchCategory, setsearchCategory] = useState<string>("First_Name");
 
   const [moreItems, setmoreItems] = useState(false);
   const { filterbyDepartment, filterbyOffice, filterbyJobtitle } = useContext(MyContext);
-  //initialising empty arrays to store the count of each category
-  var departments_count: number[] = [];
-  var offices_count: number[] = [];
-  var jbtitle_count: number[] = [];
-
-  //loops to count the count of employees of each catogery(3 catogeries of side bar) and push them to the array
-
-  departments.forEach((element) => {
-    var cnt: IEmployee[] = employee.filter((emp) => emp.Dept_Name == element);
-    departments_count.push(cnt.length);
-  });
-  offices.forEach((element) => {
-    var cnt: IEmployee[] = employee.filter((emp) => emp.Office_Details == element);
-    offices_count.push(cnt.length);
-  });
-  job_titles.forEach((element) => {
-    var cnt: IEmployee[] = employee.filter((emp) => emp.Title == element);
-    jbtitle_count.push(cnt.length);
-  });
   function alpha_filter(alpha: string) {
     {
       setfilterEmployees(
-        employees.filter((emp: IEmployee) => {
+        allEmployees.filter((emp: IEmployee) => {
           {
-            if (emp.First_Name.toLowerCase().startsWith(alpha.toLowerCase())) {
+            if (emp.firstName.toLowerCase().startsWith(alpha.toLowerCase())) {
               return emp;
             }
           }
@@ -81,21 +110,22 @@ const SideBar: React.FC<props> = (show_sidebar) => {
   function filterBy() {
     if (searchCategory == "First_Name") {
       setfilterEmployees(
-        employees.filter((emp: IEmployee) => {
+        allEmployees.filter((emp: IEmployee) => {
           {
-            if (emp.First_Name.toLowerCase().startsWith(search.toLowerCase())) {
+            if (emp.firstName.toLowerCase().startsWith(search.toLowerCase())) {
               return emp;
             }
           }
         })
       );
     }
+    console.log("asd", filterEmployees);
 
     if (searchCategory == "Last_Name") {
       setfilterEmployees(
-        employees.filter((emp: IEmployee) => {
+        allEmployees.filter((emp: IEmployee) => {
           {
-            if (emp.Last_Name.toLowerCase().startsWith(search.toLowerCase())) {
+            if (emp.lastName.toLowerCase().startsWith(search.toLowerCase())) {
               return emp;
             }
           }
@@ -104,10 +134,10 @@ const SideBar: React.FC<props> = (show_sidebar) => {
     }
     if (searchCategory == "Prefered_Name") {
       setfilterEmployees(
-        employees.filter((emp: IEmployee) => {
+        allEmployees.filter((emp: IEmployee) => {
           {
             if (
-              emp.Preffered_Name.toLowerCase().startsWith(search.toLowerCase())
+              emp.prefferedName.toLowerCase().startsWith(search.toLowerCase())
             ) {
               return emp;
             }
@@ -116,12 +146,6 @@ const SideBar: React.FC<props> = (show_sidebar) => {
       );
     }
   }
-  //To re render the employee directory when local storage is updated
-  useEffect(() => {
-    window.addEventListener("storage", () => {
-      setfilterEmployees(JSON.parse(localStorage.getItem("employees") || "[]"))
-    });
-  }, []);
   //Filtering the employee directory based on the search catogery first name from the search input field
   //Filtering the employee directory based on the search catogery last name from the search input field
   //Filtering the employee directory based on the search catogery preffered name from the search input field
@@ -133,48 +157,51 @@ const SideBar: React.FC<props> = (show_sidebar) => {
   for (let i = 65; i < 91; i++) {
     alphabets.push(String.fromCharCode(i));
   }
-
+  ///function for Employees departments////
+  function displayDepartments() {
+    var str = [];
+    for (const [k, v] of Object.entries(filterEmployeesByDepartment)) {
+      console.log(k,v)
+      str.push(<li id="it" className="font-styles filtertype-color" onClick={() => { console.log("Department Filter"); filterbyDepartment(k) }}>{k}({(v)})</li>)
+    }
+    return str;
+  }
+  //function for Employees offices///
+  function displayOffices() {
+    var strr = [];
+    for (const [k, v] of Object.entries(filterEmployeesByOffice)) {
+      console.log(k,v)
+      strr.push( <li id="seattle" className="font-styles filtertype-color" onClick={() => { filterbyOffice(k) }}>{k}({(v)})</li>)
+    }
+    return strr;
+  }
+ ///function for Employee JobTitles///
+ function displayJobTitles() {
+  var strrr = [];
+  for (const [k, v] of Object.entries(filterEmployeesByJobTitle)) {
+    console.log(k,v)
+    strrr.push(<li id="share-pnt" className="font-styles filtertype-color" onClick={() => { filterbyJobtitle(k) }}>{k}({(v)})</li>)
+  }
+  return strrr;
+}
   return (
     <>
       <div className="primary">
         <Row className="row">
           <Col sm={2}>
             <div className="employee-filter">
+              
               <ul className="filter-types">
-                <li className="filterby-type font-styles">Departments</li>
-                <li id="it" className="font-styles filtertype-color" onClick={() => { console.log("Department Filter"); filterbyDepartment("IT") }}>IT{`(${departments_count[0]})`}</li>
-                <li id="hr" className="font-styles filtertype-color" onClick={() => { filterbyDepartment("Human Resources") }}>Human Resources{`(${departments_count[1]})`}</li>
-                <li id="md" className="font-styles filtertype-color" onClick={() => { filterbyDepartment("MD") }}>MD{`(${departments_count[2]})`}</li>
-                <li id="sales" className="font-styles filtertype-color" onClick={() => { filterbyDepartment("Sales") }}>Sales{`(${departments_count[3]})`}</li>
+                <li className="filterby-type font-styles" onClick={() => { }}>Departments</li>
+                {displayDepartments()}
               </ul>
               <ul className="filter-types">
                 <li className="filterby-type font-styles">Offices</li>
-                <li id="seattle" className="font-styles filtertype-color" onClick={() => { filterbyOffice("Seattle") }}>Seattle{`(${offices_count[0]})`}</li>
-                <li id="india" className="font-styles filtertype-color" onClick={() => { filterbyOffice("India") }}>India{`(${offices_count[1]})`}</li>
+                {displayOffices()}
               </ul>
               <ul className="filter-types">
                 <li className="filterby-type font-styles">Job Titles</li>
-                <li id="share-pnt" className="font-styles filtertype-color" onClick={() => { filterbyJobtitle("SharePoint Practice Head") }}>SharePoint Practice Head{`(${jbtitle_count[0]})`}</li>
-                <li id="net-dev" className="font-styles filtertype-color" onClick={() => { filterbyJobtitle(".Net Development Lead") }}>.Net Development Lead{`(${jbtitle_count[1]})`}</li>
-                <li id="rectr-exp" className="font-styles filtertype-color" onClick={() => { filterbyJobtitle("Recruiting Expert") }}>Recruiting Expert{`(${jbtitle_count[2]})`}</li>
-                <li id="bi-dev" className="font-styles filtertype-color" onClick={() => { filterbyJobtitle("BI Developer") }}>BI Developer{`(${jbtitle_count[3]})`}</li>
-                <li id="b-anlys" className="font-styles filtertype-color" onClick={() => { filterbyJobtitle("Business Analyst") }}>Business Analyst{`(${jbtitle_count[4]})`}</li>
-                <div>
-                  {moreItems && <><li id="p-l" className="hide-department font-styles filtertype-color" onClick={() => { filterbyJobtitle("Project Lead") }}>Project Lead{`(${jbtitle_count[5]})`}</li>
-                    <li id="s-a" className="hide-department font-styles filtertype-color" onClick={() => { filterbyJobtitle("Summer Analyst") }}>Summer Analyst{`(${jbtitle_count[6]})`}</li>
-                    <li id="mgr" className="hide-department font-styles filtertype-color" onClick={() => { filterbyJobtitle("Manager") }}>Manager{`(${jbtitle_count[7]})`}</li></>}
-                </div>
-                <div>
-                  {!moreItems && <li className="blue font-styles filtertype-color" id="view-more">
-                    <a href="#" className="view-color font-styles filtertype-color" onClick={() => { setmoreItems(true) }}>View More</a>
-                  </li>}
-                </div>
-                <div>
-                  {moreItems && <li className="blue  font-styles filtertype-color" id="view-less">
-                    <a href="#" className="hide-less view-color font-styles filtertype-color" onClick={() => setmoreItems(false)} >View Less</a>
-                  </li>}
-                </div>
-
+                {displayJobTitles()}
               </ul>
             </div>
 
@@ -189,7 +216,7 @@ const SideBar: React.FC<props> = (show_sidebar) => {
                   <div className="alphabets" style={{ backgroundColor: "#3399ff" }}>
                     <Person onClick={() => {
                       setsearch("");
-                      setfilterEmployees(employees || []);
+                      setfilterEmployees(allEmployees || []);
                     }}
                       style={{
                         color: "white",
@@ -242,7 +269,7 @@ const SideBar: React.FC<props> = (show_sidebar) => {
                       <button
                         onClick={() => {
                           setsearch("");
-                          setfilterEmployees(employees || []);
+                          setfilterEmployees(allEmployees || []);
                         }}
                         className="button clear-button font-styles position-relative"
                       >
@@ -303,15 +330,15 @@ const SideBar: React.FC<props> = (show_sidebar) => {
               <Row>
 
                 <div className="total-employees display-employees ">
-                  {filterEmployees.map((emp: any) => {
+                  {filterEmployees.map((emp: any, index: number) => {
                     return (
                       <Employee_card
-                        key={emp._id}
-                        _id={emp._id}
-                        Employee_Img={emp.Employee_Img}
-                        Preffered_Name={emp.Preffered_Name}
-                        Department={emp.Dept_Name}
-                        Designation={emp.Title}
+                        key={index}
+                        employeeId={emp.employeeId}
+                        image={emp.image}
+                        prefferedName={emp.prefferedName}
+                        departmentId={emp.departmentId}
+                        jobTitleId={emp.jobTitleId}
                       />
                     );
                   })}
@@ -319,7 +346,6 @@ const SideBar: React.FC<props> = (show_sidebar) => {
               </Row>
 
             </div>
-            {/* Employee directory starts here */}
           </Col>
 
 
